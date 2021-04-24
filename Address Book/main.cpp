@@ -165,11 +165,8 @@ void Input()
 
         }while (insert == 'Y');
     
-               writeFile.open("AddressBook.txt", ios::out | ios::trunc);
-               readFile.open("AddressBook.txt", ios::in | ios::trunc);
-        //if(AddressBookVector.size() - 1 == AddressBookVector.empty())
-        //peek()==ifstream::traits_type::eof()
-            //  bool empty = readFile.peek() == EOF;
+              writeFile.open("AddressBook.txt", ios::out | ios::trunc);
+              readFile.open("AddressBook.txt", ios::in | ios::trunc);
               writeFile.seekp(0,ios::end);
               size_t fileSize = writeFile.tellp();
               if(fileSize==0) {writeFile << "\t\t\t\t\tAddress Book\n\n";}
