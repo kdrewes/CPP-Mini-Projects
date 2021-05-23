@@ -66,7 +66,6 @@ using namespace std;
             o << "\nCity: " << a.city << endl;
             o << "\nState: " << a.state << endl;
             o << "\nZip: " << a.zip << endl << endl;
-            o << endl;
             return o;
         }
         
@@ -165,18 +164,25 @@ void Input()
 
         }while (insert == 'Y');
     
-              writeFile.open("AddressBook.txt", ios::out | ios::trunc);
-              readFile.open("AddressBook.txt", ios::in | ios::trunc);
+               writeFile.open("AddressBook.txt", ios::out | ios::trunc);
+               readFile.open("AddressBook.txt", ios::in | ios::trunc);
+        //if(AddressBookVector.size() - 1 == AddressBookVector.empty())
+        //peek()==ifstream::traits_type::eof()
+            //  bool empty = readFile.peek() == EOF;
               writeFile.seekp(0,ios::end);
               size_t fileSize = writeFile.tellp();
-              if(fileSize==0) {writeFile << "\t\t\t\t\tAddress Book\n\n";}
-              for(int i = 0; i < AddressBookVector.size(); i++) {writeFile << AddressBookVector[i];}
+        
+              if(fileSize==0) {writeFile << "----------- Address Book: -----------\n";}
+              for(int i = 0; i < AddressBookVector.size(); i++)
+              {
+                  writeFile << AddressBookVector[i];
+                  writeFile << "--------------------------------------\n";
+              }
 
                readFile.close();
                writeFile.close();
     
         cout << "\n----------- Address Book: -----------\n";
-               writeFile.open("AddressBook.txt", ios::in);
                readFile.open("AddressBook.txt", ios::in);
                if(!readFile)
                {
@@ -186,9 +192,10 @@ void Input()
                string content;
                while(getline(readFile,content))
                {
-                   if(!(content.find("Address Book") != string::npos)){cout << content << endl;}
+                   if(!(content.find("----------- Address Book: -----------") != string::npos) && !(content.find("--------------------------------------") != string::npos)){cout << content << endl;}
+                   
                }
-               writeFile.close();
+
                readFile.close();
                break;
        }
@@ -211,8 +218,12 @@ void Input()
                if(valid)
                {
                writeFile.open("AddressBook.txt", ios::out | ios::trunc);
-               writeFile << "\t\t\t\tAddress Book\n\n";
-               for(int i = 0; i < AddressBookVector.size(); i++) {writeFile << AddressBookVector[i];}
+               writeFile << "----------- Address Book: -----------\n";
+               for(int i = 0; i < AddressBookVector.size(); i++)
+                   {
+                   writeFile << AddressBookVector[i];
+                   writeFile << "--------------------------------------\n";
+               }
                    --counter;
                    writeFile.close();
                }
@@ -232,11 +243,16 @@ void Input()
            case 3:
            {
                writeFile.open("AddressBook.txt", ios::out | ios::trunc);
-               writeFile << "\t\t\t\tAddress Book\n\n";
-               for(int i = 0; i < AddressBookVector.size(); i++) {writeFile << AddressBookVector[i];}
+               writeFile << "----------- Address Book: -----------\n";
+               for(int i = 0; i < AddressBookVector.size(); i++)
+               {
+                   writeFile << AddressBookVector[i];
+                   writeFile << "--------------------------------------\n";
+                   
+               }
                writeFile.close();
                
-               cout << "\n----------- Address Book: -----------\n";
+               cout << "\n------------ Address Book: ------------\n";
                
                for(int i = 0; i < AddressBookVector.size(); i++) {cout << AddressBookVector[i];}
                break;
