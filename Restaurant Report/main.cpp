@@ -32,6 +32,10 @@ Seniors: 400, 500, 600, 600, 700, 200, 100
 #define CATEGORY 3 //Represents the number of categories which includes: kids, adults and seniors.
 using namespace std;
 //--------------------------------------------------------------------------------------------------
+//Function Prototypes:
+bool Compare(int,int,bool);  
+void Input(int, const string [], const string [], long double []); 
+//--------------------------------------------------------------------------------------------------
 namespace command
 {
 char tab = '\t';
