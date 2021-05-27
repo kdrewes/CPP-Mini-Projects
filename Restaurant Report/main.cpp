@@ -62,7 +62,7 @@ bool Compare(int number,int i,bool flag)
 }
 //--------------------------------------------------------------------------------------------------
 
-void Input(int pounds[CATEGORY][DAYS], const string categories[], const string days[],double average[])
+void Input(int pounds[CATEGORY][DAYS], const string categories[], const string days[], double average[])
 {
     int sum = 0,
         x = -1,
@@ -141,6 +141,7 @@ void Input(int pounds[CATEGORY][DAYS], const string categories[], const string d
         information += o.str();
         document[i] = information + '\n';
         information.clear();
+        sum = 0, lowest = 0, highest = 0;
         o.str("");
         o.clear();
     }
