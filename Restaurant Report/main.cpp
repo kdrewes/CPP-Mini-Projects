@@ -120,9 +120,12 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
                 lowestArray[CATEGORY],
                 highestArray[CATEGORY];
     
-    ostringstream o;
     string information,
            document[CATEGORY];
+    
+    ostringstream o;
+    
+    divides<double>Divides;
     
     for(int i = 0; i < CATEGORY; i++)
     {
@@ -157,14 +160,14 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
                 pounds[i][j] = exception;
                 sum += pounds[i][j];
                 command::space();
-                o << days[j] << pounds[i][j]; 
+                o << days[j] << pounds[i][j];
                 information += o.str();
                 o.str("");
                 o.clear();
             }
         }
         
-        average[i] = (static_cast<long double>(sum) / DAYS);
+        average[i] = Divides(static_cast<long double>(sum),DAYS);
         
         ++x;
  
