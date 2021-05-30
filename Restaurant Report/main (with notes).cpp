@@ -1,33 +1,21 @@
 // This file is the exact same as 'main.cpp' except it includes notes. Please feel free to remove asterisks if you would like to view the full code.  Thank you
 
+
 /**
-
-/Write a program to help a restaurant owner keep track of how many pounds of food each category of diners eats each day during a typical week. There are 3 categories of diners: Kids, Adults and Seniors.
-
- //Do not use global variables, pointers or vectors for this program.
-
+ Write a program to help a restaurant owner keep track of how many pounds of food each category of diners eats each day during a typical week. There are 3 categories of diners: Kids, Adults and Seniors.
+ Do not use global variables, pointers or vectors for this program.
 In main create a two-dimensional 3 x 7 array to hold the diners’ data. Each row represents a different diner category and each column represents a different day of the week.
-
 From main call a function to prompt and capture the user input data for each diner category. Validate the input, negative numbers for pounds of food eaten is invalid.
-
 From main call a function to calculate and display the average amount of food eaten per day by all the diners.
-
 From main call a function to display the least amount of food eaten during the week by any one diner category (Display the Diner Category, the least amount of food eaten, and on what day).
-
 From main call a function to display the greatest amount of food eaten during the week by any one diner category. (Display the Diner Category #, the greatest amount of food eaten, and on what day).
-
 Run:
-
 Input Data
-
 Amounts of food (in pounds) eaten each day of the week by each category of diners
-
 Kids: 200, 100, 100, 60, 75, 300, 300
-
 Adults: 500, 300, 200, 200, 400, 600, 900
-
 Seniors: 400, 500, 600, 600, 700, 200, 100
- 
+ */
  
 #include <iostream>
 #include <iomanip>
@@ -38,23 +26,17 @@ using namespace std;
 //--------------------------------------------------------------------------------------------------
 //Function Prototypes:
 bool Compare(int,int,bool);  //Used to compare the size of two variables.  Created for organizational purposes.
-
 long double GetLowest(long double [1][DAYS], int, int &); //Retrieves the least amount of food eaten for each category.
-
 long double GetHighest(long double [1][DAYS], int, int &); //Retrieves the greatest amount of food eaten for each category.
-
 void Input(int, const string [], const string [], long double []); //Allows the user to input the necessary data.
 //--------------------------------------------------------------------------------------------------
 //I've created my own library which allows me to implement basic commands
 namespace command
 {
-
 //Allows programmer to implement space command without having to type in any output.
 void space(){cout << '\n';}
-
 //Allows programmer to implement multiple space command without having to type in any output.
 void space(int size)
-
 {
     string temp;
     for(int i = 0; i < size; i++){temp += '\n';}
@@ -136,9 +118,12 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
                 lowestArray[CATEGORY], //An array used to store the least amount of food eaten for each category (kids, adults and seniors).
                 highestArray[CATEGORY]; //An array used to store the greatest amount of food eaten for each category (kids, adults and seniors).
     
-    ostringstream o; //Used to convert all data types into a string variable refered to as 'information.'
     string information, //Used to collect all the data from ostringstream variable.  From there, it will transfer the data into the 'document[CATEGORY]' array for each category (kids, adults and seniors).  The variable will automatically clear after each iteration.
            document[CATEGORY]; //Used to store the information collected by the 'information' string variable.
+    
+    ostringstream o; //Used to convert all data types into a string variable refered to as 'information.'
+    
+    divides<double>Divide; //Used to determine the average pounds eaten (sum/DAYS).
     
     //Used to iterate through the first dimension (CATEGORY) of the multidimensional array.
     for(int i = 0; i < CATEGORY; i++)
@@ -185,7 +170,7 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
             }
         }
         //Calculates the average of each category.
-        average[i] = (static_cast<long double>(sum) / DAYS);
+        average[i] = Divide(static_cast<long double>(sum),DAYS);
         
         //Increments counter.  This counter is used to determine the highest and lowest amount of food eaten.  It must iterated during each loop because it will be comparing the amount food eaten for each category of the pounds[CATEGORY][DAYS] array.
         ++x;
@@ -245,4 +230,3 @@ int main(int argc, const char * argv[])
     return 0;
 }
 
-*/
