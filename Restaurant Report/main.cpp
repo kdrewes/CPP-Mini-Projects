@@ -157,7 +157,8 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
                 pounds[i][j] = exception;
                 sum += pounds[i][j];
                 command::space();
-                o << days[j] << pounds[i][j]; information += o.str();
+                o << days[j] << pounds[i][j]; 
+                information += o.str();
                 o.str("");
                 o.clear();
             }
