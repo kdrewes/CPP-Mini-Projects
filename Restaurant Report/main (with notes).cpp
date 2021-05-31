@@ -25,18 +25,18 @@ Seniors: 400, 500, 600, 600, 700, 200, 100
 using namespace std;
 //--------------------------------------------------------------------------------------------------
 //Function Prototypes:
-bool Compare(int,int,bool);  //Used to compare the size of two variables.  Created for organizational purposes.
-long double GetLowest(long double [1][DAYS], int, int &); //Retrieves the least amount of food eaten for each category.
-long double GetHighest(long double [1][DAYS], int, int &); //Retrieves the greatest amount of food eaten for each category.
 void Input(int, const string [], const string [], long double []); //Allows the user to input the necessary data.
+bool Compare(int,int,bool); //Used to compare the size of two variables.  Created for organizational purposes.
+long double GetLowest(long double [1][DAYS], int, int &); //Retrieves the least amount of food eaten for each category.
+long double GetHighest(long double [1][DAYS], int, int &); //Retrieves the highest amount of food eaten for each category.
 //--------------------------------------------------------------------------------------------------
 //I've created my own library which allows me to implement basic commands
 namespace command
 {
-//Allows programmer to implement space command without having to type in any output.
-void space(){cout << '\n';}
-//Allows programmer to implement multiple space command without having to type in any output.
-void space(int size)
+
+void space(){cout << '\n';} //Allows programmer to implement space command without having to type in any output.
+
+void space(int size)//Allows programmer to implement multiple space command without having to type in any output.
 {
     string temp;
     for(int i = 0; i < size; i++){temp += '\n';}
