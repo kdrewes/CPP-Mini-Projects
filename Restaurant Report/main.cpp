@@ -33,13 +33,13 @@ Seniors: 400, 500, 600, 600, 700, 200, 100
 using namespace std;
 //--------------------------------------------------------------------------------------------------
 //Function Prototypes:
+void Input(int, const string [], const string [], long double []);
+
 bool Compare(int,int,bool);
 
 long double GetLowest(long double [1][DAYS], int, int &);
 
 long double GetHighest(long double [1][DAYS], int, int &);
-
-void Input(int, const string [], const string [], long double []);
 //--------------------------------------------------------------------------------------------------
 
 namespace command
