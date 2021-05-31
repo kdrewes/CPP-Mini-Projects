@@ -26,8 +26,11 @@ using namespace std;
 //--------------------------------------------------------------------------------------------------
 //Function Prototypes:
 void Input(int, const string [], const string [], long double []); //Allows the user to input the necessary data.
+
 bool Compare(int,int,bool); //Used to compare the size of two variables.  Created for organizational purposes.
+
 long double GetLowest(long double [1][DAYS], int, int &); //Retrieves the least amount of food eaten for each category.
+
 long double GetHighest(long double [1][DAYS], int, int &); //Retrieves the highest amount of food eaten for each category.
 //--------------------------------------------------------------------------------------------------
 //I've created my own library which allows me to implement basic commands
