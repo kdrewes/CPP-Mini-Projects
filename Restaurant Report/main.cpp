@@ -203,9 +203,11 @@ int main(int argc, const char * argv[])
     long double pounds[CATEGORY][DAYS],
                 average[CATEGORY];
     
-    const string categories [CATEGORY] = {"---------- Kids ----------","---------- Adults ----------","---------- Seniors ----------"};
+    const string categories [CATEGORY] = 
+    {"---------- Kids ----------","---------- Adults ----------","---------- Seniors ----------"};
     
-    const string days [DAYS] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    const string days [DAYS] = 
+    {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     
     Input(pounds,categories,days,average);
     
