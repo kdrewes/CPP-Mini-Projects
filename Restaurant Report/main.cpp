@@ -1,27 +1,15 @@
 /**Write a program to help a restaurant owner keep track of how many pounds of food each category of diners eats each day during a typical week. There are 3 categories of diners: Kids, Adults and Seniors.
-
  //Do not use global variables, pointers or vectors for this program.
-
 In main create a two-dimensional 3 x 7 array to hold the diners’ data. Each row represents a different diner category and each column represents a different day of the week.
-
 From main call a function to prompt and capture the user input data for each diner category. Validate the input, negative numbers for pounds of food eaten is invalid.
-
 From main call a function to calculate and display the average amount of food eaten per day by all the diners.
-
 From main call a function to display the least amount of food eaten during the week by any one diner category (Display the Diner Category, the least amount of food eaten, and on what day).
-
 From main call a function to display the greatest amount of food eaten during the week by any one diner category. (Display the Diner Category #, the greatest amount of food eaten, and on what day).
-
 Run:
-
 Input Data
-
 Amounts of food (in pounds) eaten each day of the week by each category of diners
-
 Kids: 200, 100, 100, 60, 75, 300, 300
-
 Adults: 500, 300, 200, 200, 400, 600, 900
-
 Seniors: 400, 500, 600, 600, 700, 200, 100
  */
 
@@ -33,9 +21,9 @@ Seniors: 400, 500, 600, 600, 700, 200, 100
 using namespace std;
 //--------------------------------------------------------------------------------------------------
 //Function Prototypes:
-void Input(int, const string [], const string [], long double []);
+void Input(long double, const string [], const string [], long double []);
 
-bool Compare(int,int,bool);
+bool Compare(long double,long double,bool);
 
 long double GetLowest(long double [1][DAYS], int, int &);
 
@@ -58,7 +46,7 @@ void space(int size)
 }
 //--------------------------------------------------------------------------------------------------
 
-bool Compare(int number,int number2,bool flag)
+bool Compare(long double number,long double number2,bool flag)
 {
         if(flag)
         {
@@ -148,19 +136,17 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
                 information += o.str();
                 o.str("");
                 o.clear();
-                
             }
-            catch(int exception)
+            catch(long double exception)
             {
-                while(Compare(exception,0,true))
+                while(Compare(pounds[i][j],0,true))
                 {
                 cout << "\nInvalid entry, please re-enter:\n\n" << days[j] << " : ";
-                cin >> exception;
+                cin >> pounds[i][j];
                 }
-                pounds[i][j] = exception;
                 sum += pounds[i][j];
                 command::space();
-                o << days[j] << pounds[i][j];
+                o << days[j] << ": " << pounds[i][j] << " Pounds " << endl << endl;
                 information += o.str();
                 o.str("");
                 o.clear();
@@ -203,10 +189,10 @@ int main(int argc, const char * argv[])
     long double pounds[CATEGORY][DAYS],
                 average[CATEGORY];
     
-    const string categories [CATEGORY] = 
+    const string categories [CATEGORY] =
     {"---------- Kids ----------","---------- Adults ----------","---------- Seniors ----------"};
     
-    const string days [DAYS] = 
+    const string days [DAYS] =
     {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     
     Input(pounds,categories,days,average);
