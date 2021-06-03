@@ -21,7 +21,7 @@ Seniors: 400, 500, 600, 600, 700, 200, 100
 using namespace std;
 //--------------------------------------------------------------------------------------------------
 //Function Prototypes:
-void Input(long double, const string [], const string [], long double []);
+void Input(long double [CATEGORY][DAYS], const string [], const string [], long double []);
 
 bool Compare(long double,long double,bool);
 
