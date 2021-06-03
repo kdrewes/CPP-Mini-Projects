@@ -1,6 +1,5 @@
-/**
-Write a program to help a restaurant owner keep track of how many pounds of food each category of diners eats each day during a typical week. There are 3 categories of diners: Kids, Adults and Seniors.
-Do not use global variables, pointers or vectors for this program.
+/**Write a program to help a restaurant owner keep track of how many pounds of food each category of diners eats each day during a typical week. There are 3 categories of diners: Kids, Adults and Seniors.
+ //Do not use global variables, pointers or vectors for this program.
 In main create a two-dimensional 3 x 7 array to hold the diners’ data. Each row represents a different diner category and each column represents a different day of the week.
 From main call a function to prompt and capture the user input data for each diner category. Validate the input, negative numbers for pounds of food eaten is invalid.
 From main call a function to calculate and display the average amount of food eaten per day by all the diners.
@@ -167,7 +166,9 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
         highestArray[x] = highest;
         
         o << "\nLowest: " << lowestArray[i] << " pounds on " << days[lowIndex] << endl;
+        
         o << "\nHighest: " << highestArray[i] << " pounds on " << days[highIndex] << endl;
+        
         o << "\nAverage: " << average[i] << " Pounds " << endl;
        
         information += o.str();
