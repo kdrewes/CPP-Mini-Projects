@@ -113,7 +113,7 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
     
     ostringstream o;
     
-    divides<double>Divides;
+    divides<long double>Divides;
     
     for(int i = 0; i < CATEGORY; i++)
     {
