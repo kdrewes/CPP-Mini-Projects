@@ -84,7 +84,7 @@ long double GetHighest(long double pounds[1][DAYS],int x, int &highIndex)
     
     highest = pounds[x][0];
     
-    for(int z = x; z < DAYS; z++)
+    for(int z = 0; z < DAYS; z++)
     {
         if(Compare(highest,pounds[x][z],true))
         {
