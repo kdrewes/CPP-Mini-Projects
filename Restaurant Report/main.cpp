@@ -130,11 +130,17 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
             cin >> pounds[i][j];
                 
                 if(Compare(pounds[i][j],0,true)){throw pounds[i][j];}
+             
                 command::space();
+             
                 o << days[j] << ": " << pounds[i][j] << " Pounds " << endl << endl;
+             
                 sum += pounds[i][j];
+             
                 information += o.str();
+             
                 o.str("");
+             
                 o.clear();
             }
             catch(long double exception)
@@ -144,11 +150,19 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
                 cout << "\nInvalid entry, please re-enter:\n\n" << days[j] << " : ";
                 cin >> pounds[i][j];
                 }
+             
                 sum += pounds[i][j];
+             
                 command::space();
-                o << days[j] << ": " << pounds[i][j] << " Pounds " << endl << endl;
+             
+                o << days[j] << ": " << pounds[i][j] << " Pounds ";
+             
+                command::space();
+             
                 information += o.str();
+               
                 o.str("");
+                
                 o.clear();
             }
         }
