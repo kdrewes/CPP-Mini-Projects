@@ -190,8 +190,9 @@ void Input()
                string content;
                while(getline(readFile,content))
                {
-                   if(!(content.find("----------- Address Book: -----------") != string::npos) && !(content.find("--------------------------------------") != string::npos)){cout << content << endl;}
-                   
+                   if(!(content.find("----------- Address Book: -----------") != string::npos) && 
+                      !(content.find("--------------------------------------") != string::npos))
+                      {cout << content << endl;}
                }
 
                readFile.close();
