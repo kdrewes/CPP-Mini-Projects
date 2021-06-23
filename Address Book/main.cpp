@@ -55,7 +55,9 @@ using namespace std;
     std::string city;
     std::string state;
     std::string zip;
-    int option; char insert;
+     
+    int option;
+    char insert;
     
     friend ostream & operator << (ostream&o, const AddressBook& a)
         {
@@ -104,16 +106,20 @@ void Find(vector<std::string>&AddressBookString, vector<AddressBook>&AddressBook
 //-----------------------------------------------------------------------------------------------------------------------------------
 void Input()
 {
+    static int counter = 0,
+               option;
+    
     string firstName,
            lastName,
            address,
            city,
            state,
            zip;
-    static int counter = 0,
-        option;
+
     char insert;
+ 
     ofstream writeFile; ifstream readFile; ostringstream ostream;
+ 
     std::vector<AddressBook>AddressBookVector;
     std::vector<std::string>AddressBookString;
     
@@ -189,7 +195,7 @@ void Input()
                string content;
                while(getline(readFile,content))
                {
-                   if(!(content.find("----------- Address Book: -----------") != string::npos) && 
+                   if(!(content.find("----------- Address Book: -----------") != string::npos) &&
                       !(content.find("--------------------------------------") != string::npos))
                       {cout << content << endl;}
                }
