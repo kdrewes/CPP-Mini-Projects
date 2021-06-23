@@ -136,8 +136,7 @@ void Input()
        switch(option)
        {
    case 1:
-    {
-            
+    {    
         do
     {
         ++counter;
