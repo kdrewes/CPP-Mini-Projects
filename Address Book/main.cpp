@@ -81,8 +81,7 @@ string ToString(std::string firstName,std::string lastName,std::string address,s
             o << "\nState: " << state << flush;
             o << "\nZip: " << zip << flush;
             o << endl << endl << flush;
-            string result = o.str();
-            return result;
+            return o.str();
         }
 //-----------------------------------------------------------------------------------------------------------------------------------
 void Find(vector<std::string>&AddressBookString, vector<AddressBook>&AddressBookVector, string firstName, string lastName, bool&valid)
