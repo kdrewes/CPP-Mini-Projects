@@ -12,21 +12,21 @@
  The program should include the name of each subject the course numbers are associated with.
  
  Course Number (Key)    Subject (Value)
- CS101                            Computer Science
- CS102                            Computer Science
- CS103                            Computer Science
- NT110                            Networking
- CM241                           Chemistry
+ CS101                  Computer Science
+ CS102                  Computer Science
+ CS103                  Computer Science
+ NT110                  Networking
+ CM241                  Chemistry
  
  The Program should also create a map containing course numbers and the names of the instructors that teach each course.
  The map should have the following key - value pairs.
  
  Course Number (Key)    Instructor (Value)
- CS101                            Haynes
- CS102                            Alvarado
- CS103                            Rich
- NT110                            Burke
- CM241                           Lee
+ CS101                  Haynes
+ CS102                  Alvarado
+ CS103                  Rich
+ NT110                  Burke
+ CM241                  Lee
  
  The program should also create a map containing course numbers and the meeting times of each course.  The map should have the following key - value pairs:
  
