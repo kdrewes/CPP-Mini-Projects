@@ -22,11 +22,8 @@ using namespace std;
 //--------------------------------------------------------------------------------------------------
 //Function Prototypes:
 void Input(long double [CATEGORY][DAYS], const string [], const string [], long double []);
-
 bool Compare(long double,long double,bool);
-
 long double GetLowest(long double [1][DAYS], int, int &);
-
 long double GetHighest(long double [1][DAYS], int, int &);
 //--------------------------------------------------------------------------------------------------
 
