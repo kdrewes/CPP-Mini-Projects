@@ -136,7 +136,7 @@ void Input()
        switch(option)
        {
    case 1:
-    {    
+    {
         do
     {
         ++counter;
@@ -168,14 +168,14 @@ void Input()
 
         }while (insert == 'Y');
     
-              writeFile.open("AddressBook.txt", ios::out | ios::trunc);
-              readFile.open("AddressBook.txt", ios::in | ios::trunc);
+              writeFile.open("AddressBook.doc", ios::out | ios::trunc);
+              readFile.open("AddressBook.doc", ios::in | ios::trunc);
        
               writeFile.seekp(0,ios::end);
               size_t fileSize = writeFile.tellp();
         
               if(fileSize==0) {writeFile << "----------- Address Book: -----------\n";}
-              for(int i = 0; i < AddressBookVector.size(); i++)
+              for(vector<AddressBook>::size_type i = 0; i < AddressBookVector.size(); i++)
               {
                   writeFile << AddressBookVector[i];
                   writeFile << "--------------------------------------\n";
@@ -185,10 +185,10 @@ void Input()
                writeFile.close();
     
         cout << "\n----------- Address Book: -----------\n";
-               readFile.open("AddressBook.txt", ios::in);
+               readFile.open("AddressBook.doc", ios::in);
                if(!readFile)
                {
-                   cout << "\nFile is unable to open\n";
+                   cerr << "\nFile is unable to open\n";
                    exit(1);
                }
                string content;
@@ -220,9 +220,9 @@ void Input()
                
                if(valid)
                {
-               writeFile.open("AddressBook.txt", ios::out | ios::trunc);
+               writeFile.open("AddressBook.doc", ios::out | ios::trunc);
                writeFile << "----------- Address Book: -----------\n";
-               for(int i = 0; i < AddressBookVector.size(); i++)
+               for(vector<AddressBook>::size_type i = 0; i < AddressBookVector.size(); i++)
                    {
                    writeFile << AddressBookVector[i];
                    writeFile << "--------------------------------------\n";
@@ -245,7 +245,7 @@ void Input()
                
            case 3:
            {
-               writeFile.open("AddressBook.txt", ios::out | ios::trunc);
+               writeFile.open("AddressBook.doc", ios::out | ios::trunc);
                writeFile << "----------- Address Book: -----------\n";
                for(int i = 0; i < AddressBookVector.size(); i++)
                {
@@ -257,7 +257,7 @@ void Input()
                
                cout << "\n------------ Address Book: ------------\n";
                
-               for(int i = 0; i < AddressBookVector.size(); i++) {cout << AddressBookVector[i];}
+               for(vector<AddressBook>::size_type i = 0; i < AddressBookVector.size(); i++) {cout << AddressBookVector[i];}
                break;
            }
            case 4:
