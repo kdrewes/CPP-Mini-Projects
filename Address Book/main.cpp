@@ -89,7 +89,7 @@ string ToString(std::string firstName,std::string lastName,std::string address,s
 void Find(vector<std::string>&AddressBookString, vector<AddressBook>&AddressBookVector, string firstName, string lastName, bool&valid)
 {
     valid = false;
-    for(int i = 0; i < AddressBookString.size(); i++)
+    for(vector<string>::size_type i = 0; i < AddressBookString.size(); i++)
     {
         if((AddressBookString[i].find(firstName + '\n') != string::npos) && (AddressBookString[i].find(lastName + '\n') != string::npos))
         {
@@ -247,7 +247,7 @@ void Input()
            {
                writeFile.open("AddressBook.doc", ios::out | ios::trunc);
                writeFile << "----------- Address Book: -----------\n";
-               for(int i = 0; i < AddressBookVector.size(); i++)
+               for(vector<AddressBook>::size_type i = 0; i < AddressBookVector.size(); i++)
                {
                    writeFile << AddressBookVector[i];
                    writeFile << "--------------------------------------\n";
