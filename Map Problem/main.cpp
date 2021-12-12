@@ -66,85 +66,9 @@ std::string ToString(std::map<std::string,int>,
                      std::map<std::string,std::string>::iterator,
                      std::string);
 //-------------------------------------------------------------------
+
 int counter = 0;
-//-------------------------------------------------------------------
-void Lower_To_Upper(std::string &u)
-{
-    int size = u.length();
-    for (int i = 0; i < size; i++){u[i] = toupper(u[i]);}
-}
-//-------------------------------------------------------------------
-void Print(std::map<std::string,int>RoomNumber,
-           std::map<std::string,std::string>Subject,
-           std::map<std::string,std::string>Instructor,
-           std::map<std::string,std::string>Time,
-           std::map<std::string,int>::iterator it,
-           std::map<std::string,std::string>::iterator it2,
-           std::map<std::string,std::string>::iterator it3,
-           std::map<std::string,std::string>::iterator it4,
-           std::string courseNumber,
-           std::ofstream&file)
-{
-    Lower_To_Upper(courseNumber);
-    it = RoomNumber.find(courseNumber);
-    it2 = Subject.find(courseNumber);
-    it3 = Instructor.find(courseNumber);
-    it4 = Time.find(courseNumber);
-   
-    if (it != RoomNumber.end() && it2 != Subject.end() && it3 != Instructor.end() && it4 != Time.end())
-    {
-        std::cout <<"\n--------- " << it->first <<  " ---------\n";
-        std::cout << "Course Number: " << it->first;
-        std::cout << "\n\nRoom Number: #" << it->second;
-        std::cout << "\n\nSubject: " << it2->second;
-        std::cout << "\n\nInstructor: " << it3->second;
-        std::cout << "\n\nTime: " << it4->second;
-        
-        if(counter>0){file << std::endl;}
-        file <<"\n--------- " << it->first <<  " ---------\n";
-        file << "Course Number: " << it->first;
-        file << "\n\nRoom Number: #" << it->second;
-        file << "\n\nSubject: " << it2->second;
-        file << "\n\nInstructor: " << it3->second;
-        file << "\n\nTime: " << it4->second;
-        
-        std::cout <<"\n-------------------------\n\n";
-    }
-    else{std::cout << "\nUnable to find information \n\n";}
-    
-}
-//-------------------------------------------------------------------
-std::string ToString(std::map<std::string,int>RoomNumber,
-                     std::map<std::string,std::string>Subject,
-                     std::map<std::string,std::string>Instructor,
-                     std::map<std::string,std::string>Time,
-                     std::map<std::string,int>::iterator it,
-                     std::map<std::string,std::string>::iterator it2,
-                     std::map<std::string,std::string>::iterator it3,
-                     std::map<std::string,std::string>::iterator it4,
-                     std::string courseNumber)
-{
-    std::ostringstream o;
-    Lower_To_Upper(courseNumber);
-    it = RoomNumber.find(courseNumber);
-    it2 = Subject.find(courseNumber);
-    it3 = Instructor.find(courseNumber);
-    it4 = Time.find(courseNumber);
-   
-    if(counter==0){o<<"\n-------------------------\n";}
-    if (it != RoomNumber.end() && it2 != Subject.end() && it3 != Instructor.end() && it4 != Time.end())
-    {
-        if(counter>0){o<<std::endl;}
-        o <<"\n--------- " << it->first <<  " ---------\n";
-        o << "Course Number: " << it->first;
-        o << "\n\nRoom Number: #" << it->second;
-        o << "\n\nSubject: " << it2->second;
-        o << "\n\nInstructor: " << it3->second;
-        o << "\n\nTime: " << it4->second;
-    }
-    return o.str();
-}
-//-------------------------------------------------------------------
+
 int main ()
 {
     typedef int room_number;
@@ -213,3 +137,79 @@ int main ()
     return 0;
 }
 //-------------------------------------------------------------------
+void Lower_To_Upper(std::string &u)
+{
+    int size = u.length();
+    for (int i = 0; i < size; i++){u[i] = toupper(u[i]);}
+}
+//-------------------------------------------------------------------
+void Print(std::map<std::string,int>RoomNumber,
+           std::map<std::string,std::string>Subject,
+           std::map<std::string,std::string>Instructor,
+           std::map<std::string,std::string>Time,
+           std::map<std::string,int>::iterator it,
+           std::map<std::string,std::string>::iterator it2,
+           std::map<std::string,std::string>::iterator it3,
+           std::map<std::string,std::string>::iterator it4,
+           std::string courseNumber,
+           std::ofstream&file)
+{
+    Lower_To_Upper(courseNumber);
+    it = RoomNumber.find(courseNumber);
+    it2 = Subject.find(courseNumber);
+    it3 = Instructor.find(courseNumber);
+    it4 = Time.find(courseNumber);
+   
+    if (it != RoomNumber.end() && it2 != Subject.end() && it3 != Instructor.end() && it4 != Time.end())
+    {
+        std::cout <<"\n--------- " << it->first <<  " ---------\n";
+        std::cout << "Course Number: " << it->first;
+        std::cout << "\n\nRoom Number: #" << it->second;
+        std::cout << "\n\nSubject: " << it2->second;
+        std::cout << "\n\nInstructor: " << it3->second;
+        std::cout << "\n\nTime: " << it4->second;
+        
+        if(counter>0){file << std::endl;}
+        file <<"\n--------- " << it->first <<  " ---------\n";
+        file << "Course Number: " << it->first;
+        file << "\n\nRoom Number: #" << it->second;
+        file << "\n\nSubject: " << it2->second;
+        file << "\n\nInstructor: " << it3->second;
+        file << "\n\nTime: " << it4->second;
+        
+        std::cout <<"\n-------------------------\n\n";
+    }
+    else{std::cout << "\nUnable to find information \n\n";}
+    
+}
+//-------------------------------------------------------------------
+std::string ToString(std::map<std::string,int>RoomNumber,
+                     std::map<std::string,std::string>Subject,
+                     std::map<std::string,std::string>Instructor,
+                     std::map<std::string,std::string>Time,
+                     std::map<std::string,int>::iterator it,
+                     std::map<std::string,std::string>::iterator it2,
+                     std::map<std::string,std::string>::iterator it3,
+                     std::map<std::string,std::string>::iterator it4,
+                     std::string courseNumber)
+{
+    std::ostringstream o;
+    Lower_To_Upper(courseNumber);
+    it = RoomNumber.find(courseNumber);
+    it2 = Subject.find(courseNumber);
+    it3 = Instructor.find(courseNumber);
+    it4 = Time.find(courseNumber);
+   
+    if(counter==0){o<<"\n-------------------------\n";}
+    if (it != RoomNumber.end() && it2 != Subject.end() && it3 != Instructor.end() && it4 != Time.end())
+    {
+        if(counter>0) { o << std::endl; }
+        o <<"\n--------- " << it->first <<  " ---------\n";
+        o << "Course Number: " << it->first;
+        o << "\n\nRoom Number: #" << it->second;
+        o << "\n\nSubject: " << it2->second;
+        o << "\n\nInstructor: " << it3->second;
+        o << "\n\nTime: " << it4->second;
+    }
+    return o.str();
+}
