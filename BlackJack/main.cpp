@@ -47,15 +47,17 @@
 
  Since we are ignoring card suits there won't be any flushes. Your program should be able to recognize the following hand categories, listed from least valuable to most valuable:
 
- Hand Type    Description    Example
- High Card    There are no matching cards, and the hand is not a straight    2, 5, 3, 8, 7
- Pair    Two of the cards are identical    2, 5, 3, 5, 7
- Two Pair    Two different pairs    2, 5, 3, 5, 3
- Three of a kind    Three matching cards    5, 5, 3, 5, 7
- Straight    5 consecutive cards    3, 5, 6, 4, 7
- Full House    A pair and three of a kind    5, 7, 5, 7, 7
- Four of a kind    Four or more matching cards    2, 5, 5, 5, 5
- A note on straights: a hand is a straight regardless of the order. So the values 3, 4, 5, 6, 7 represent a straight, but so do the values 7, 4, 5, 6, 3. Also, a straight requires just 5 consecutive cards, even if HAND_SIZE is larger than 5.
+ Hand Type                           Description                                                    Example
+ High Card                           There are no matching cards, and the hand is not a straight    2, 5, 3, 8, 7
+ Pair                                Two of the cards are identical                                 2, 5, 3, 5, 7
+ Two Pair                            Two different pairs                                            2, 5, 3, 5, 3
+ Three of a kind                     Three matching cards                                           5, 5, 3, 5, 7
+ Straight                            5 consecutive cards                                            3, 5, 6, 4, 7
+ Full House                          A pair and three of a kind                                     5, 7, 5, 7, 7
+ Four of a kind                      Four or more matching cards                                    2, 5, 5, 5, 5
+ 
+ A note on straights: a hand is a straight regardless of the order. So the values 3, 4, 5, 6, 7 represent a straight,
+ but so do the values 7, 4, 5, 6, 3. Also, a straight requires just 5 consecutive cards, even if HAND_SIZE is larger than 5.
 
  Your program should read in HAND_SIZE values and then print out the appropriate hand-type. If a hand matches more than one description, the program should print out the most valuable hand type.
 
