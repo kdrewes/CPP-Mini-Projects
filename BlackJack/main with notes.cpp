@@ -317,8 +317,8 @@ bool  containsFourOfaKind(const int hand[])
 }
 //----------------------------------------------------------------------
 
-//  Used to determine if multiples pairs a user hits are from the same card or different cards.  For example if a user got a full house with the card 4,4,3,3,3, the IsDifferent(const int hand[]) would return false because the full house consist of two different types of pairs.  Therefore, this is what the IsDifferent(const int hand[]) is used for.
-
+//Used to determine if multiples pairs a user hits are from the same card or different cards.  For example if a user got a full house with the card 4,4,3,3,3, 
+//the IsDifferent(const int hand[]) would return false because the full house consist of two different types of pairs.  Therefore, this is what the IsDifferent(const int hand[]) is used for.
 bool IsDifferent(const int hand[])
 {
     bool flag = true; int temp = 0;
