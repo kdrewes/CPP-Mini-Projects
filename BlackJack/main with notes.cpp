@@ -26,6 +26,7 @@
  (This is a pair, since there are two eights)
  No input validation is required for this assignment. You can assume that the user will always enter valid data (numbers between LOWEST_NUM and HIGHEST_NUM).
  Since we are ignoring card suits there won't be any flushes. Your program should be able to recognize the following hand categories, listed from least valuable to most valuable:
+ 
  Hand Type                                      Description                                                                                      Example
  High Card                                      There are no matching cards, and the hand is not a straight                                      2, 5, 3, 8, 7
  Pair                                           Two of the cards are identical                                                                   2, 5, 3, 5, 7
