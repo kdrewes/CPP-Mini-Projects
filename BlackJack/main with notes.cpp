@@ -1,12 +1,4 @@
 /**
- Learning Objectives
- After the successful completion of this learning unit, you will be able to:
-
- Implement syntactically correct C++ arrays.
- Solve a variety of standard problems using arrays.
- Array Practice
- I recommend that before you begin the Lab you write as many of these small ungraded programming challenges as you can. You should at least write 2 or 3 of them. They are a good way to gradually build up your confidence and skills. Of course, you'll have to write a program to test each function as well. Note that none of these functions should include any input or output!
-
  Write a function named noNegatives(). It should accept an array of integers and a size argument. It should return true if none of the values are negative. If any of the values are negative it should return false
 
          bool noNegatives(const int array[], int size);
@@ -47,14 +39,15 @@
 
  Since we are ignoring card suits there won't be any flushes. Your program should be able to recognize the following hand categories, listed from least valuable to most valuable:
 
- Hand Type    Description    Example
- High Card    There are no matching cards, and the hand is not a straight    2, 5, 3, 8, 7
- Pair    Two of the cards are identical    2, 5, 3, 5, 7
- Two Pair    Two different pairs    2, 5, 3, 5, 3
- Three of a kind    Three matching cards    5, 5, 3, 5, 7
- Straight    5 consecutive cards    3, 5, 6, 4, 7
- Full House    A pair and three of a kind    5, 7, 5, 7, 7
- Four of a kind    Four or more matching cards    2, 5, 5, 5, 5
+ Hand Type                                      Description                                                                                      Example
+ High Card                                      There are no matching cards, and the hand is not a straight                                      2, 5, 3, 8, 7
+ Pair                                           Two of the cards are identical                                                                   2, 5, 3, 5, 7
+ Two Pair                                       Two different pairs                                                                              2, 5, 3, 5, 3
+ Three of a kind                                Three matching cards                                                                             5, 5, 3, 5, 7
+ Straight                                       5 consecutive cards                                                                              3, 5, 6, 4, 7
+ Full House                                     A pair and three of a kind                                                                       5, 7, 5, 7, 7
+ Four of a kind                                 Four or more matching cards                                                                      2, 5, 5, 5, 5
+ 
  A note on straights: a hand is a straight regardless of the order. So the values 3, 4, 5, 6, 7 represent a straight, but so do the values 7, 4, 5, 6, 3. Also, a straight requires just 5 consecutive cards, even if HAND_SIZE is larger than 5.
 
  Your program should read in HAND_SIZE values and then print out the appropriate hand-type. If a hand matches more than one description, the program should print out the most valuable hand type.
@@ -122,15 +115,18 @@
  A hand that contains two-pair should return "true" for containsPair().
 
  Here is a table with some examples that I hope will help clear up any confusion. If there are additional hands that you are unsure about, please ask in the discussion, and I will consider adding rows to this table for further clarification.
+ 
 
- hand    pair?    two-pair?    three-of-a-kind?    full-house?    four-of-a-kind?    straight?
- 2, 2, 2, 3, 4    F    F    T    F    F    F
- 2, 3, 3, 3, 3    F    F    F    F    T    F
- 2, 2, 3, 3, 3    T    F    T    T    F    F
- 2, 2, 3, 3, 4    T    T    F    F    F    F
- 2, 2, 2, 3, 3, 3    F    F    T    F    F    F
- 9, 2, 4, 3, 6, 5    F    F    F    F    F    T
- 4, 2, 6, 8, 7, 5    F    F    F    F    F    T
+ hand                  pair?               two-pair?          three-of-a-kind?            full-house?            four-of-a-kind?             straight?
+ 2, 2, 2, 3, 4         F                   F                  T                           F                           F                      F
+ 2, 3, 3, 3, 3         F                   F                  F                           F                           T                      F
+ 2, 2, 3, 3, 3         T                   F                  T                           T                           F                      F
+ 2, 2, 3, 3, 4         T                   T                  F                           F                           F                      F
+ 2, 2, 2, 3, 3, 3      F                   F                  T                           F                           F                      F
+ 9, 2, 4, 3, 6, 5      F                   F                  F                           F                           F                      T
+ 4, 2, 6, 8, 7, 5      F                   F                  F                           F                           F                      T 
+ 
+ 
  I would suggest that before you submit your program you test it using each of the above examples.
 
  2) You do not need to write a containsHighCard function. All hands contain a highest card. If you determine that a particular hand is not one of the better hand types, then you know that it is a High Card hand.
@@ -157,11 +153,6 @@
                  cout << "contains a pair" << endl;
          }
  }
-  
- Submit Your Work
- Name your source code file according to the Lab number (a1_1.cpp, a4_2.cpp, etc.). Execute the program and copy/paste the output that is produced by your program into the bottom of the source code file, making it into a comment. Use the Lab Submission link to submit the source file. When you submit your Lab there will be a text field in which you can add a note to me (called a "comment", but don't confuse it with a C++ comment). In this "comments" section of the submission page let me know whether the program works as required.
-
- Keep in mind that if your code does not compile you will receive a 0.
  */
 #include <iostream>
 
