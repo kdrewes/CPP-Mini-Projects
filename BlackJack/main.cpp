@@ -118,13 +118,13 @@
  
 
  hand                  pair?               two-pair?          three-of-a-kind?            full-house?            four-of-a-kind?             straight?
- 2, 2, 2, 3, 4         F                   F                  T                           F                           F                      F
- 2, 3, 3, 3, 3         F                   F                  F                           F                           T                      F
- 2, 2, 3, 3, 3         T                   F                  T                           T                           F                      F
- 2, 2, 3, 3, 4         T                   T                  F                           F                           F                      F
- 2, 2, 2, 3, 3, 3      F                   F                  T                           F                           F                      F
- 9, 2, 4, 3, 6, 5      F                   F                  F                           F                           F                      T
- 4, 2, 6, 8, 7, 5      F                   F                  F                           F                           F                      T 
+ 2, 2, 2, 3, 4         F                   F                  T                           F                      F                           F
+ 2, 3, 3, 3, 3         F                   F                  F                           F                      T                           F
+ 2, 2, 3, 3, 3         T                   F                  T                           T                      F                           F
+ 2, 2, 3, 3, 4         T                   T                  F                           F                      F                           F
+ 2, 2, 2, 3, 3, 3      F                   F                  T                           F                      F                           F
+ 9, 2, 4, 3, 6, 5      F                   F                  F                           F                      F                           T
+ 4, 2, 6, 8, 7, 5      F                   F                  F                           F                      F                           T 
  
  
  I would suggest that before you submit your program you test it using each of the above examples.
