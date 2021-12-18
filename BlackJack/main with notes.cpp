@@ -1,5 +1,5 @@
 /**
-  Write a function named noNegatives(). It should accept an array of integers and a size argument. It should return true if none of the values are negative. If any of the values are negative it should return false
+ Write a function named noNegatives(). It should accept an array of integers and a size argument. It should return true if none of the values are negative. If any of the values are negative it should return false
          bool noNegatives(const int array[], int size);
  Write a function named absoluteValues(). It should accept an array of integers and a size argument. It should replace any negative values with the corresponding positive value.
          void absoluteValues(int array[], int size);
