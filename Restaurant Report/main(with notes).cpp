@@ -47,6 +47,25 @@ void space(int size)//Allows programmer to implement multiple space command with
 }
 }
 //--------------------------------------------------------------------------------------------------
+
+int main()
+{
+    long double pounds[CATEGORY][DAYS], //Used to store the amount of food eaten for each category
+                average[CATEGORY]; //Used to store the average amount of food eaten for each category
+    
+    //Used to store the different types of categories
+    const string categories [CATEGORY] = {"---------- Kids ----------","---------- Adults ----------","---------- Seniors ----------"};
+    
+    //Used to store each day
+    const string days [DAYS] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    
+    //Allows the user to input the necessary data.
+    Input(pounds,categories,days,average);
+    
+    command::space();
+    return 0;
+}
+
 //Used to compare the size of two variables.  Created for organizational purposes.
 bool Compare(long double number,long double number2,bool flag)
 {
@@ -216,21 +235,3 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
     for(int i = 0; i < CATEGORY; i++){cout << document[i];}
 }
 //--------------------------------------------------------------------------------------------------
-int main(int argc, const char * argv[])
-{
-    long double pounds[CATEGORY][DAYS], //Used to store the amount of food eaten for each category
-                average[CATEGORY]; //Used to store the average amount of food eaten for each category
-    
-    //Used to store the different types of categories
-    const string categories [CATEGORY] = {"---------- Kids ----------","---------- Adults ----------","---------- Seniors ----------"};
-    
-    //Used to store each day
-    const string days [DAYS] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
-    
-    //Allows the user to input the necessary data.
-    Input(pounds,categories,days,average);
-    
-    command::space();
-    return 0;
-}
-
