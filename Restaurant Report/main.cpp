@@ -22,8 +22,11 @@ using namespace std;
 //--------------------------------------------------------------------------------------------------
 //Function Prototypes:
 void Input(long double [CATEGORY][DAYS], const string [], const string [], long double []);
+
 bool Compare(long double,long double,bool);
+
 long double GetLowest(long double [1][DAYS], int, int &);
+
 long double GetHighest(long double [1][DAYS], int, int &);
 //--------------------------------------------------------------------------------------------------
 
@@ -43,6 +46,23 @@ void space(int size)
 }
 //--------------------------------------------------------------------------------------------------
 
+int main()
+{
+    long double pounds[CATEGORY][DAYS],
+                average[CATEGORY];
+    
+    const string categories [CATEGORY] =
+    {"---------- Kids ----------","---------- Adults ----------","---------- Seniors ----------"};
+    
+    const string days [DAYS] =
+    {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    
+    Input(pounds,categories,days,average);
+    
+    command::space();
+    return 0;
+}
+//--------------------------------------------------------------------------------------------------
 bool Compare(long double number,long double number2,bool flag)
 {
         if(flag)
@@ -197,19 +217,3 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
     for(int i = 0; i < CATEGORY; i++){cout << document[i];}
 }
 //--------------------------------------------------------------------------------------------------
-int main(int argc, const char * argv[])
-{
-    long double pounds[CATEGORY][DAYS],
-                average[CATEGORY];
-    
-    const string categories [CATEGORY] =
-    {"---------- Kids ----------","---------- Adults ----------","---------- Seniors ----------"};
-    
-    const string days [DAYS] =
-    {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
-    
-    Input(pounds,categories,days,average);
-    
-    command::space();
-    return 0;
-}
