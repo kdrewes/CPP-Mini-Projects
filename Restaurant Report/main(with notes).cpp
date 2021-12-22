@@ -1,6 +1,3 @@
-// This file is the exact same as 'main.cpp' except it includes notes. Please feel free to remove asterisks if you would like to view the full code.  Thank you
-
-
 /**
  Write a program to help a restaurant owner keep track of how many pounds of food each category of diners eats each day during a typical week. There are 3 categories of diners: Kids, Adults and Seniors.
  Do not use global variables, pointers or vectors for this program.
