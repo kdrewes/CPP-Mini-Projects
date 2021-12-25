@@ -62,56 +62,7 @@ int main()
     command::space();
     return 0;
 }
-//--------------------------------------------------------------------------------------------------
-bool Compare(long double number,long double number2,bool flag)
-{
-        if(flag)
-        {
-            if(number < number2) {return true;}
-            return false;
-        }
-        else
-        {
-            if(number > number2) {return true;}
-            return false;
-        }
-}
-//--------------------------------------------------------------------------------------------------
-long double GetLowest(long double pounds[1][DAYS],int x, int &lowIndex)
-{
-    long double lowest;
-    
-    lowest = pounds[x][0];
-    
-    for(int z = 0; z < DAYS; z++)
-    {
-        if(Compare(lowest,pounds[x][z],false))
-        {
-            lowest = pounds[x][z];
-            lowIndex = z;
-        }
-    }
-    
-    return lowest;
-}
-//--------------------------------------------------------------------------------------------------
-long double GetHighest(long double pounds[1][DAYS],int x, int &highIndex)
-{
-    long double highest;
-    
-    highest = pounds[x][0];
-    
-    for(int z = 0; z < DAYS; z++)
-    {
-        if(Compare(highest,pounds[x][z],true))
-        {
-            highest = pounds[x][z];
-            highIndex = z;
-        }
-    }
-    
-    return highest;
-}
+
 //--------------------------------------------------------------------------------------------------
 void Input(long double pounds[CATEGORY][DAYS], const string categories[], const string days[], long double average[])
 {
@@ -217,3 +168,55 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
     for(int i = 0; i < CATEGORY; i++){cout << document[i];}
 }
 //--------------------------------------------------------------------------------------------------
+bool Compare(long double number,long double number2,bool flag)
+{
+        if(flag)
+        {
+            if(number < number2) {return true;}
+            return false;
+        }
+        else
+        {
+            if(number > number2) {return true;}
+            return false;
+        }
+}
+//--------------------------------------------------------------------------------------------------
+long double GetLowest(long double pounds[1][DAYS],int x, int &lowIndex)
+{
+    long double lowest;
+    
+    lowest = pounds[x][0];
+    
+    for(int z = 0; z < DAYS; z++)
+    {
+        if(Compare(lowest,pounds[x][z],false))
+        {
+            lowest = pounds[x][z];
+            lowIndex = z;
+        }
+    }
+    
+    return lowest;
+}
+//--------------------------------------------------------------------------------------------------
+long double GetHighest(long double pounds[1][DAYS],int x, int &highIndex)
+{
+    long double highest;
+    
+    highest = pounds[x][0];
+    
+    for(int z = 0; z < DAYS; z++)
+    {
+        if(Compare(highest,pounds[x][z],true))
+        {
+            highest = pounds[x][z];
+            highIndex = z;
+        }
+    }
+    
+    return highest;
+}
+//--------------------------------------------------------------------------------------------------
+
+
