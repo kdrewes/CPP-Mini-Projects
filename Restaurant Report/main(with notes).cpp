@@ -62,67 +62,6 @@ int main()
     command::space();
     return 0;
 }
-
-//Used to compare the size of two variables.  Created for organizational purposes.
-bool Compare(long double number,long double number2,bool flag)
-{
-        //If flag is true than it means we are determining if number is less than number2
-        if(flag)
-        {
-            if(number < number2) {return true;}
-            return false;
-        }
-        //If flag is false than it means we are determining if number is greater than number2
-        else
-        {
-            if(number > number2) {return true;}
-            return false;
-        }
-}
-//--------------------------------------------------------------------------------------------------
-long double GetLowest(long double pounds[1][DAYS],int x, int &lowIndex)
-{
-    //Initialized lowest variable.
-    long double lowest;
-    
-    //Initializes the amount for the 'lowest' variable.
-    lowest = pounds[x][0];
-    
-    //Used to determine the lowest amount of food eaten.
-    for(int z = 0; z < DAYS; z++)
-    {
-        //Compares the size of each index of the array pounds[x][z].
-        if(Compare(lowest,pounds[x][z],false))
-        {
-            lowest = pounds[x][z];
-            lowIndex = z;
-        }
-    }
-    
-    return lowest;
-}
-//--------------------------------------------------------------------------------------------------
-long double GetHighest(long double pounds[1][DAYS],int x, int &highIndex)
-{
-    //Initialized highest variable.
-    long double highest;
-    
-    //Initializes the amount for the 'highest' variable.
-    highest = pounds[x][0];
-    
-    //Used to determine the highest amount of food eaten.
-    for(int z = 0; z < DAYS; z++)
-    {
-        //Compares the size of each index of the array pounds[x][z].
-        if(Compare(highest,pounds[x][z],true))
-        {
-            highest = pounds[x][z];
-            highIndex = z;
-        }
-    }
-    
-    return highest;
-}
 //--------------------------------------------------------------------------------------------------
 void Input(long double pounds[CATEGORY][DAYS], const string categories[], const string days[], long double average[]) //Allows the user to input the necessary data.
 {
@@ -230,5 +169,66 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
         o.clear();
     }
     for(int i = 0; i < CATEGORY; i++){cout << document[i];}
+}
+
+//Used to compare the size of two variables.  Created for organizational purposes.
+bool Compare(long double number,long double number2,bool flag)
+{
+        //If flag is true than it means we are determining if number is less than number2
+        if(flag)
+        {
+            if(number < number2) {return true;}
+            return false;
+        }
+        //If flag is false than it means we are determining if number is greater than number2
+        else
+        {
+            if(number > number2) {return true;}
+            return false;
+        }
+}
+//--------------------------------------------------------------------------------------------------
+long double GetLowest(long double pounds[1][DAYS],int x, int &lowIndex)
+{
+    //Initialized lowest variable.
+    long double lowest;
+    
+    //Initializes the amount for the 'lowest' variable.
+    lowest = pounds[x][0];
+    
+    //Used to determine the lowest amount of food eaten.
+    for(int z = 0; z < DAYS; z++)
+    {
+        //Compares the size of each index of the array pounds[x][z].
+        if(Compare(lowest,pounds[x][z],false))
+        {
+            lowest = pounds[x][z];
+            lowIndex = z;
+        }
+    }
+    
+    return lowest;
+}
+//--------------------------------------------------------------------------------------------------
+long double GetHighest(long double pounds[1][DAYS],int x, int &highIndex)
+{
+    //Initialized highest variable.
+    long double highest;
+    
+    //Initializes the amount for the 'highest' variable.
+    highest = pounds[x][0];
+    
+    //Used to determine the highest amount of food eaten.
+    for(int z = 0; z < DAYS; z++)
+    {
+        //Compares the size of each index of the array pounds[x][z].
+        if(Compare(highest,pounds[x][z],true))
+        {
+            highest = pounds[x][z];
+            highIndex = z;
+        }
+    }
+    
+    return highest;
 }
 //--------------------------------------------------------------------------------------------------
