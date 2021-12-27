@@ -18,30 +18,38 @@ Seniors: 400, 500, 600, 600, 700, 200, 100
 #include <sstream>
 #define DAYS 7
 #define CATEGORY 3
-using namespace std;
+
 //--------------------------------------------------------------------------------------------------
 //Function Prototypes:
-void Input(long double [CATEGORY][DAYS], const string [], const string [], long double []);
+void Input(long double [CATEGORY][DAYS], const std::string [], const std::string [], long double);
 
 bool Compare(long double,long double,bool);
 
+//long double GetLowest(long double [1][DAYS], int, int &);
 long double GetLowest(long double [1][DAYS], int, int &);
 
+//long double GetHighest(long double [1][DAYS], int, int &);
 long double GetHighest(long double [1][DAYS], int, int &);
+
+
 //--------------------------------------------------------------------------------------------------
 
 namespace command
 {
 
-void space(){cout << '\n';}
+void space()
+{
+    std:: cout << '\n';
+}
 
 void space(int size)
 
 {
-    string temp;
-    for(int i = 0; i < size; i++){temp += '\n';}
+    std::string temp;
+    for(int i = 0; i < size; i++)
+        temp += '\n';
    
-    cout << temp;
+    std::cout << temp;
 }
 }
 //--------------------------------------------------------------------------------------------------
@@ -49,59 +57,55 @@ void space(int size)
 int main()
 {
     long double pounds[CATEGORY][DAYS],
-                average[CATEGORY];
+                average;
     
-    const string categories [CATEGORY] =
+    const std::string categories [CATEGORY] =
     {"---------- Kids ----------","---------- Adults ----------","---------- Seniors ----------"};
     
-    const string days [DAYS] =
+    const std::string days [DAYS] =
     {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     
     Input(pounds,categories,days,average);
     
     command::space();
+    
     return 0;
 }
 
 //--------------------------------------------------------------------------------------------------
-void Input(long double pounds[CATEGORY][DAYS], const string categories[], const string days[], long double average[])
+void Input(long double pounds[CATEGORY][DAYS], const std::string categories[], const std::string days[], long double average)
 {
     int sum = 0,
-        x = -1,
         lowIndex = 0,
         highIndex = 0;
     
-    long double highest,
-                lowest,
-                lowestArray[CATEGORY],
-                highestArray[CATEGORY];
-    
-    string information,
+    std::string information,
            document[CATEGORY];
     
-    ostringstream o;
+    std::ostringstream o;
     
-    divides<long double>Divides;
+    std::divides<long double>Divides;
     
     for(int i = 0; i < CATEGORY; i++)
     {
         
-        cout << categories[i];
-        o << categories[i] << endl;
+        std::cout << categories[i];
+        o << categories[i] << std::endl;
         command::space();
       
         for(int j = 0; j < DAYS; j++)
         {
             try
             {
-            cout << days[j] << ": ";
-            cin >> pounds[i][j];
+                std::cout << days[j] << ": ";
+                std::cin >> pounds[i][j];
                 
-                if(Compare(pounds[i][j],0,true)){throw pounds[i][j];}
+                if(Compare(pounds[i][j],0,true))
+                    throw pounds[i][j];
              
                 command::space();
              
-                o << days[j] << ": " << pounds[i][j] << " Pounds " << endl << endl;
+                o << days[j] << ": " << pounds[i][j] << " Pounds " << std::endl << std::endl;
              
                 sum += pounds[i][j];
              
@@ -115,17 +119,15 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
             {
                 while(Compare(pounds[i][j],0,true))
                 {
-                cout << "\nInvalid entry, please re-enter:\n\n" << days[j] << " : ";
-                cin >> pounds[i][j];
+                    std::cout << "\nInvalid entry, please re-enter:\n\n" << days[j] << " : ";
+                    std::cin >> pounds[i][j];
                 }
              
                 sum += pounds[i][j];
              
                 command::space();
              
-                o << days[j] << ": " << pounds[i][j] << " Pounds ";
-             
-                command::space();
+                o << days[j] << ": " << pounds[i][j] << " Pounds " << std::endl << std::endl;
              
                 information += o.str();
                
@@ -135,23 +137,14 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
             }
         }
         
-        average[i] = Divides(static_cast<long double>(sum),DAYS);
+        average = Divides(static_cast<long double>(sum),DAYS);
         
-        ++x;
- 
-        lowest = GetLowest(pounds,x,lowIndex);
-
-        lowestArray[x] = lowest;
-
-        highest = GetHighest(pounds,x,highIndex);
-
-        highestArray[x] = highest;
+      
+        o << "\nLowest: " <<  GetLowest(pounds,i,lowIndex)<< " pounds on " << days[lowIndex] << std::endl;
         
-        o << "\nLowest: " << lowestArray[i] << " pounds on " << days[lowIndex] << endl;
+        o << "\nHighest: " << GetHighest(pounds,i,highIndex) << " pounds on " << days[highIndex] << std::endl;
         
-        o << "\nHighest: " << highestArray[i] << " pounds on " << days[highIndex] << endl;
-        
-        o << "\nAverage: " << average[i] << " Pounds " << endl;
+        o << "\nAverage: " << average << " Pounds " << std::endl;
        
         information += o.str();
         
@@ -159,26 +152,27 @@ void Input(long double pounds[CATEGORY][DAYS], const string categories[], const 
  
         information.clear();
         
-        sum = 0, lowest = 0, highest = 0, lowIndex = 0, highIndex = 0;
+        sum = 0, lowIndex = 0, highIndex = 0;
         
         o.str("");
         o.clear();
     }
     
-    for(int i = 0; i < CATEGORY; i++){cout << document[i];}
+    for(int i = 0; i < CATEGORY; i++)
+        std::cout << document[i];
 }
 //--------------------------------------------------------------------------------------------------
 bool Compare(long double number,long double number2,bool flag)
 {
         if(flag)
         {
-            if(number < number2) {return true;}
-            return false;
+            if(number < number2)
+            return true; return false;
         }
         else
         {
-            if(number > number2) {return true;}
-            return false;
+            if(number > number2)
+            return true; return false;
         }
 }
 //--------------------------------------------------------------------------------------------------
