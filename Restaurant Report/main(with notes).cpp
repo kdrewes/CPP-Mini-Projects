@@ -1,6 +1,6 @@
 /**
  Write a program to help a restaurant owner keep track of how many pounds of food each category of diners eats each day during a typical week. There are 3 categories of diners: Kids, Adults and Seniors.
- Do not use global variables, pointers or vectors for this program.
+
 In main create a two-dimensional 3 x 7 array to hold the diners’ data. Each row represents a different diner category and each column represents a different day of the week.
 From main call a function to prompt and capture the user input data for each diner category. Validate the input, negative numbers for pounds of food eaten is invalid.
 From main call a function to calculate and display the average amount of food eaten per day by all the diners.
@@ -9,224 +9,302 @@ From main call a function to display the greatest amount of food eaten during th
 Run:
 Input Data
 Amounts of food (in pounds) eaten each day of the week by each category of diners
+ 
 Kids: 200, 100, 100, 60, 75, 300, 300
+ 
 Adults: 500, 300, 200, 200, 400, 600, 900
+ 
 Seniors: 400, 500, 600, 600, 700, 200, 100
  */
- 
+
 #include <iostream>
 #include <iomanip>
 #include <sstream>
-#define DAYS 7 //Represents the total number of days
-#define CATEGORY 3 //Represents the number of categories which includes: kids, adults and seniors.
-using namespace std;
+#include <vector>
+
+#define DAYS 7
+#define CATEGORY 3
+
+//--------------------------------------------------------------------------------------------------
+//Enum
+enum Category {KIDS,ADULTS,SENIORS} category;
 //--------------------------------------------------------------------------------------------------
 //Function Prototypes:
-void Input(long double, const string [], const string [], long double []); //Allows the user to input necessary data.
-bool Compare(long double,long double,bool); //Used to compare the size of two variables.  Created for organizational purposes.
-long double GetLowest(long double [1][DAYS], int, int &); //Retrieves the least amount of food eaten for each category.
-long double GetHighest(long double [1][DAYS], int, int &); //Retrieves the highest amount of food eaten for each category.
+
+//Input Function which allows user to input all necessary data
+void Input(long double [CATEGORY][DAYS], const std::string [], const std::string [], std::string []);
+
+//Displays Result
+void Print(const std::string []);
+
+//Used for Input Validation
+void Verify(long double [CATEGORY][DAYS], const std::string [], int, int);
+
+//Determines if numbers are greater or lesser
+bool Compare(long double,long double,bool);
+
+//Determines lowest number in each category
+long double GetLowest(long double [1][DAYS], int);
+
+//Determines highest number in each category
+long double GetHighest(long double [1][DAYS], int);
+
+//Counts the amount of duplicate numbers if the lowest or highest number contains duplicates.
+int GetCount(long double [1][DAYS], long double, int);
+
+//Determines the subscript of each duplicate number
+std::vector <int> GetIndex(long double [1][DAYS], long double, int);
+
+//Displays output for each category.  Results are transferred to string document[] (argument for Print)
+std::string Output(long double [CATEGORY][DAYS], const std::string [], int, long double);
+
 //--------------------------------------------------------------------------------------------------
-//I've created my own library which allows me to implement basic commands
+
+//Library
 namespace command
 {
 
-void space(){cout << '\n';} //Allows programmer to implement space command without having to type in any output.
+void space(int size)
 
-void space(int size)//Allows programmer to implement multiple space command without having to type in any output.
 {
-    string temp;
-    for(int i = 0; i < size; i++){temp += '\n';}
+    std::string temp;
+    for(int i = 0; i < size; i++)
+        temp += '\n';
    
-    cout << temp;
+    std::cout << temp;
 }
 }
 //--------------------------------------------------------------------------------------------------
-
 int main()
 {
-    long double pounds[CATEGORY][DAYS], //Used to store the amount of food eaten for each category
-                average[CATEGORY]; //Used to store the average amount of food eaten for each category
+    //Multidemensional array which contains pounds for 3 different categories and 7 days each
+    long double pounds[CATEGORY][DAYS];
     
-    //Used to store the different types of categories
-    const string categories [CATEGORY] = {"---------- Kids ----------","---------- Adults ----------","---------- Seniors ----------"};
+    //String Array which consists of categories
+    const std::string categories [CATEGORY] =
+    {"---------- Kids ----------","---------- Adults ----------","---------- Seniors ----------"};
     
-    //Used to store each day
-    const string days [DAYS] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    //String Array which consists of days
+    const std::string days [DAYS] =
+    {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     
-    //Allows the user to input the necessary data.
-    Input(pounds,categories,days,average);
+    //String array used to store results
+    std::string document[CATEGORY];
     
-    command::space();
+    //Input Function
+    Input(pounds,categories,days,document);
+    
+    //Displays result
+    Print(document);
+    
     return 0;
 }
 //--------------------------------------------------------------------------------------------------
-void Input(long double pounds[CATEGORY][DAYS], const string categories[], const string days[], long double average[]) //Allows the user to input the necessary data.
+//Input Function which allows user to input all necessary data
+void Input(long double pounds[CATEGORY][DAYS], const std::string categories[], const std::string days[], std::string document[])
 {
-    int sum = 0, //Used to determine the sum of all the pounds for each particular category (kids,adults and seniors).  From there, it will be used to determine the average amount (average = sum/CATEGORY)
-        x = -1, //Used to count the index (of category) for each multidimensional array.  This will be used to determine the greatest amount of food eaten and the least amount of food eaten.  The reason why I've intialized it to -1 is so I can increments each index by using the prefix method.
-        lowIndex = 0, //Used to determine the specific day that the least amount of food was eaten for each category (kids, adults and seniors).
-        highIndex = 0; //Used to determine the specific day that the greatest amount of food was eaten for each category (kids, adults and seniors).
+    int sum = 0;                                        //Determines sum of pounds per category
     
-    long double highest, //Represents the greatest amount of food eaten for each category (kids, adults and seniors).
-                lowest, //Represents the least amount of food eaten for each category (kids, adults and seniors).
-                lowestArray[CATEGORY], //An array used to store the least amount of food eaten for each category (kids, adults and seniors).
-                highestArray[CATEGORY]; //An array used to store the greatest amount of food eaten for each category (kids, adults and seniors).
+    std::ostringstream output;                          //Collects all information per category and is then tranferred to document[]
     
-    string information, //Used to collect all the data from ostringstream variable.  From there, it will transfer the data into the 'document[CATEGORY]' array for each category (kids, adults and seniors).  The variable will automatically clear after each iteration.
-           document[CATEGORY]; //Used to store the information collected by the 'information' string variable.
+    std::divides <long double> average;                 //Determines average [ average = sum/DAYS ]
     
-    ostringstream o; //Used to convert all data types into a string variable refered to as 'information.'
+    bool flag;                                          //Used for input validation if an exception occurrs.
     
-    divides<long double>Divide; //Used to determine the average pounds eaten (sum/DAYS).
-    
-    //Used to iterate through the first dimension (CATEGORY) of the multidimensional array.
-    for(int i = 0; i < CATEGORY; i++)
+    for(int i = 0; i < CATEGORY; i++)                   //For loop used for each category
     {
-        //Displays each category depending on the iteration.  Used as a header.
-        cout << categories[i];
-        o << categories[i] << endl; //Collects the information which will be later transferred into the document[] array.
-        command::space(); //Creates a space.
         
-        //Used to iterate through the second dimension (CATEGORY) of the multidimensional array.
-        for(int j = 0; j < DAYS; j++)
+        std::cout << categories[i];                     //Display Category for each iteration
+        
+        output << categories[i] << std::endl;           //Collect data into output
+        
+        command::space(1);
+      
+        for(int j = 0; j < DAYS; j++)                   //For loop used for each day
         {
-            //An exception used to determine if pounds[CATEGORY][DAYS] is a negative number.
+            flag = false;                               //Resets flag
+            
+            do
+            {
+                
             try
             {
-            cout << days[j] << ": "; //Displays each day.
-            cin >> pounds[i][j]; //Prompts used to enter the amount of food eaten for each day (days[j]).
+                Verify(pounds,days,i,j);                 //Used for input validation
                 
-                //Determines if pounds[i][j] is less than 0
-                if(Compare(pounds[i][j],0,true)){throw pounds[i][j];}
-                command::space();
-                o << days[j] << ": " << pounds[i][j] << " Pounds " << endl << endl; //Used to collect the information.
-                sum += pounds[i][j]; //Determine the sum of all the food eaten for each individual category.
-                information += o.str(); //Transfers the information into the 'information' variable.
-                o.str(""); //Clears the ostringstream operator.
-                o.clear(); //Clears any error flags that may have generated.
-                
+                flag = true;                             //Determines if information is valid
             }
-            //Catches the exception error if the pounds[i][j] was declared negative.
-            catch(long double exception)
+            catch(long double exception)                 //Catches negative values
             {
-                //Determines if the exception variable is less than 0
-                while(Compare(pounds[i][j],0,true))
-                {
-                cout << "\nInvalid entry, please re-enter:\n\n" << days[j] << " : "; //Prompts used to re-enter information
-                cin >> pounds[i][j];
-                }
-                sum += pounds[i][j]; //Determines the sum of all the food eaten for each individual category.
-                command::space();
-                o << days[j] << ": " << pounds[i][j] << " Pounds " << endl << endl; //Used to collect the information.
-                information += o.str();  //Collects the information which will be later transferred into the document[] array.
-                o.str(""); //Clears the ostringstream operator.
-                o.clear(); //Clears any error flags that may have generated.
+               command::space(1);
+                
+               std::cerr << exception << " is not a valid entry, please re-enter:\n\n";
             }
+            catch(std::invalid_argument &exception)      //Catches non numerical data
+            {
+                std::cerr << exception.what();
+                
+                std::cin.clear();
+                
+                std::cin.ignore(1000,'\n');
+            }
+                
+            }while(!flag);                                //Loops if data is negative or non numerical
+            
+            output << days[j] << ": " << pounds[i][j]     //Collects data through output
+            << " Pounds " << std::endl << std::endl;
+            
+            sum += pounds[i][j]; command::space(1);       //Calculates sum
         }
-        //Calculates the average of each category.
-        average[i] = Divide(static_cast<long double>(sum),DAYS);
         
-        //Increments counter.  This counter is used to determine the highest and lowest amount of food eaten.  It must iterated during each loop because it will be comparing the amount food eaten for each category of the pounds[CATEGORY][DAYS] array.
-        ++x;
+        output << Output(pounds,days,i,average(static_cast<long double>(sum),DAYS));  //Collects output
         
-        //Retrieves the least amount of food eaten for each category.
-        lowest = GetLowest(pounds,x,lowIndex);
+        document[i] = output.str() + '\n';                //Stores output in string document []
         
-        //Tranfers the lowest amount of food to an array for each category
-        lowestArray[x] = lowest;
-    
-        //Retrieves the greatest amount of food eaten for each category.
-        highest = GetHighest(pounds,x,highIndex);
-        //Tranfers the greatest amount of food to an array for each category
-        highestArray[x] = highest;
+        output.str("");                                   //Empties data within output.
+            
+        output.clear();                                   //Clears error flags.
         
-        //Collects the data for the lowest amount of food eaten, greatest amount eaten and average amount which will subsequently be passed on to the 'information string.
-        o << "\nLowest: " << lowestArray[i] << " pounds on " << days[lowIndex] << endl;
-        
-        o << "\nHighest: " << highestArray[i] << " pounds on " << days[highIndex] << endl;
-        
-        o << "\nAverage: " << average[i] << " Pounds " << endl;
-       
-        //Transfers the information from the ostringstream variable to the 'information' variable
-        information += o.str();
-        
-        //Transfers the information from the 'information variable to the document[] array.
-        document[i] = information + '\n';
-        
-        //Clears the 'information' variable.
-        information.clear();
-        
-        //Resets the sum, lowest and highest variables so they won't interfere with the subsequent loops.
-        sum = 0, lowest = 0, highest = 0, lowIndex = 0, highIndex = 0;
-        
-        //Clears the ostringstream operator.
-        o.str("");
-        
-        //Clears any error flags that may have generated.
-        o.clear();
+        sum = 0;                                          //Resets sum
     }
-    for(int i = 0; i < CATEGORY; i++){cout << document[i];}
 }
+//--------------------------------------------------------------------------------------------------
+//Displays Result
+void Print(const std::string document [])
+{
+    for(int i = 0; i < CATEGORY; i++)
+        std::cout << document[i];
+}
+//--------------------------------------------------------------------------------------------------
+//Used for Input Validation
+void Verify(long double pounds [1][DAYS], const std::string days [], int i, int j)
+{
+    std::cout << days[j] << ": ";
+    std::cin >> pounds[i][j];
+    
+    if(Compare(pounds[i][j],0,true))
+        throw pounds[i][j];
 
-//Used to compare the size of two variables.  Created for organizational purposes.
+    if(!std::cin)
+        throw std::invalid_argument ("\nInvalid entry, please re-enter:\n\n");
+}
+//--------------------------------------------------------------------------------------------------
+//Determines if numbers are greater or lesser
 bool Compare(long double number,long double number2,bool flag)
 {
-        //If flag is true than it means we are determining if number is less than number2
         if(flag)
         {
-            if(number < number2) {return true;}
-            return false;
+            if(number < number2)
+            return true; return false;
         }
-        //If flag is false than it means we are determining if number is greater than number2
+    
         else
         {
-            if(number > number2) {return true;}
-            return false;
+            if(number > number2)
+            return true; return false;
         }
 }
 //--------------------------------------------------------------------------------------------------
-long double GetLowest(long double pounds[1][DAYS],int x, int &lowIndex)
+//Determines lowest number in each category
+long double GetLowest(long double pounds[1][DAYS],int i)
 {
-    //Initialized lowest variable.
     long double lowest;
     
-    //Initializes the amount for the 'lowest' variable.
-    lowest = pounds[x][0];
+    lowest = pounds[i][0];
     
-    //Used to determine the lowest amount of food eaten.
-    for(int z = 0; z < DAYS; z++)
-    {
-        //Compares the size of each index of the array pounds[x][z].
-        if(Compare(lowest,pounds[x][z],false))
-        {
-            lowest = pounds[x][z];
-            lowIndex = z;
-        }
-    }
+    for(int x = 0; x < DAYS; x++)
+        if(Compare(lowest,pounds[i][x],false))
+            lowest = pounds[i][x];
     
     return lowest;
 }
 //--------------------------------------------------------------------------------------------------
-long double GetHighest(long double pounds[1][DAYS],int x, int &highIndex)
+//Determines highest number in each category
+long double GetHighest(long double pounds[1][DAYS],int i)
 {
-    //Initialized highest variable.
     long double highest;
     
-    //Initializes the amount for the 'highest' variable.
-    highest = pounds[x][0];
+    highest = pounds[i][0];
     
-    //Used to determine the highest amount of food eaten.
-    for(int z = 0; z < DAYS; z++)
-    {
-        //Compares the size of each index of the array pounds[x][z].
-        if(Compare(highest,pounds[x][z],true))
-        {
-            highest = pounds[x][z];
-            highIndex = z;
-        }
-    }
+    for(int x = 0; x < DAYS; x++)
+        if(Compare(highest,pounds[i][x],true))
+            highest = pounds[i][x];
     
     return highest;
+}
+//--------------------------------------------------------------------------------------------------
+//Counts the amount of duplicate numbers if the lowest or highest number contains duplicates.
+int GetCount(long double pounds[1][DAYS], long double number, int i)
+{
+    int count = 0;
+    
+    for(int x = 0; x < DAYS; x++)
+        if(number == pounds[i][x])
+            count++;
+    
+            return count;
+}
+//--------------------------------------------------------------------------------------------------
+//Determines the subscript of each duplicate number.
+std::vector <int> GetIndex (long double pounds[1][DAYS], long double number, int i)
+{
+    std::vector <int> Index;
+    
+    for(int x = 0; x < DAYS; x++)
+        if(number == pounds[i][x])
+            Index.push_back(x);
+    
+            return Index;
+}
+//--------------------------------------------------------------------------------------------------
+//Displays output for each category.  Results are transferred to string document[] (argument for Print)
+std::string Output(long double pounds[CATEGORY][DAYS], const std::string days[], int i, long double average)
+{
+    std::ostringstream output;
+    
+    std::vector <int> HighIndex = GetIndex(pounds,GetHighest(pounds,i),i),
+                      LowIndex = GetIndex(pounds,GetLowest(pounds,i),i);
+    
+    if(GetCount(pounds,GetLowest(pounds,i),i) == 1)
+    output << "\nLowest: " <<  GetLowest(pounds,i)<< " pounds on " << days[LowIndex[0]] << std::endl;
+    
+    else if(GetCount(pounds,GetLowest(pounds,i),i) == 2)
+    output << "\nLowest: " <<  GetLowest(pounds,i)<< " pounds on " << days[LowIndex[0]] << " and " <<  days[LowIndex[1]] << std::endl;
+    
+    else if(GetCount(pounds,GetLowest(pounds,i),i) == 3)
+    output << "\nLowest: " <<  GetLowest(pounds,i)<< " pounds on " << days[LowIndex[0]] << ", " <<  days[LowIndex[1]] << " and " << days[LowIndex[2]] << std::endl;
+    
+    else if(GetCount(pounds,GetLowest(pounds,i),i) == 4)
+    output << "\nLowest: " <<  GetLowest(pounds,i)<< " pounds on " << days[LowIndex[0]] << ", " <<  days[LowIndex[1]] << ", " << days[LowIndex[2]] << " and " << days[LowIndex[3]] << std::endl;
+    
+    else if(GetCount(pounds,GetLowest(pounds,i),i) == 5)
+    output << "\nLowest: " <<  GetLowest(pounds,i)<< " pounds on " << days[LowIndex[0]] << ", " <<  days[LowIndex[1]] << ", " << days[LowIndex[2]] << ", " << days[LowIndex[3]] << " and " <<days[LowIndex[4]] << std::endl;
+    
+    else if(GetCount(pounds,GetLowest(pounds,i),i) == 6)
+    output << "\nLowest: " <<  GetLowest(pounds,i)<< " pounds on " << days[LowIndex[0]] << ", " <<  days[LowIndex[1]] << ", " << days[LowIndex[2]] << ", " << days[LowIndex[3]] << ", " << days[LowIndex[4]] << " and " << days[LowIndex[5]] << std::endl;
+    
+    
+    if(GetCount(pounds,GetHighest(pounds,i),i) == 1)
+    output << "\nHighest: " <<  GetHighest(pounds,i)<< " pounds on " << days[HighIndex[0]] << std::endl;
+    
+    else if(GetCount(pounds,GetHighest(pounds,i),i) == 2)
+    output << "\nHighest: " <<  GetHighest(pounds,i)<< " pounds on " << days[HighIndex[0]] << " and " <<  days[HighIndex[1]] << std::endl;
+    
+    else if(GetCount(pounds,GetHighest(pounds,i),i) == 3)
+    output << "\nHighest: " <<  GetHighest(pounds,i)<< " pounds on " << days[HighIndex[0]] << ", " <<  days[HighIndex[1]] << " and " << days[HighIndex[2]] << std::endl;
+    
+    else if(GetCount(pounds,GetHighest(pounds,i),i) == 4)
+    output << "\nHighest: " <<  GetHighest(pounds,i)<< " pounds on " << days[HighIndex[0]] << ", " <<  days[HighIndex[1]] << ", " << days[HighIndex[2]] << " and " << days[HighIndex[3]] << std::endl;
+    
+    else if(GetCount(pounds,GetHighest(pounds,i),i) == 5)
+    output << "\nHighest: " <<  GetHighest(pounds,i)<< " pounds on " << days[HighIndex[0]] << ", " <<  days[HighIndex[1]] << ", " << days[HighIndex[2]] << ", " << days[HighIndex[3]] << " and " <<days[HighIndex[4]] << std::endl;
+    
+    else if(GetCount(pounds,GetHighest(pounds,i),i) == 6)
+    output << "\nHighest: " <<  GetHighest(pounds,i)<< " pounds on " << days[HighIndex[0]] << ", " <<  days[HighIndex[1]] << ", " << days[HighIndex[2]] << ", " << days[HighIndex[3]] << ", " << days[HighIndex[4]] << " and " << days[HighIndex[5]] << std::endl;
+   
+    output << std::setprecision(2) << std::fixed;
+    
+    output << "\nAverage: " << average << std::endl;
+    
+    return output.str();
 }
 //--------------------------------------------------------------------------------------------------
