@@ -112,7 +112,6 @@ void Input(long double pounds[CATEGORY][DAYS], const std::string categories[], c
             try
             {
                 Verify(pounds,days,i,j);
-                
                 flag = true;
             }
             catch(long double exception)
