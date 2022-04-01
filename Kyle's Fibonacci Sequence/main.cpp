@@ -136,7 +136,6 @@ size_t Fibonacci :: GetUpdater() const
 {
     return i;
 }
-
 //-----------------------------------------------
 int main()
 {
