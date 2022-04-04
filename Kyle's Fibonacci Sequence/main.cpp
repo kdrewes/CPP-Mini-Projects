@@ -102,7 +102,8 @@ void Fibonacci :: Print()
     std::string plus = " + ",
                 equals = " = ";
     
-    std::cout << GetNumber1() << plus << GetNumber2()
+    std::cout << GetNumber1() 
+    << plus << GetNumber2()
     << equals << GetSum();
     
     command::space(2);
