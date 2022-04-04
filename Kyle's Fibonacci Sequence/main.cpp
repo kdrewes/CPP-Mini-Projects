@@ -1,10 +1,12 @@
 //Kyle's Fibonacci Sequence
 
 /**
+
  Disclaimer:
  This program was created by me.  It was not copied or duplicated in anyway.  
  If you happen to find a program that is conducted in this same format prior 
  to 4/3/2022, please let me know and I will remove this code immediately.  Thank you.
+ 
  */
 #include <iostream>
 
