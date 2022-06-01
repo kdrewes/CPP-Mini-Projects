@@ -31,8 +31,6 @@ struct Structure
         return input;
     }
     
-    
-    
 }structure;
 
 int Find(char *, char);
