@@ -39,9 +39,7 @@ void Print(Structure&);
 //-----------------------------------------------------------------------------
 int main()
 {
-   
-    
-    std::cout << "--------------------------------------------\n\n\tThis program will determine how many\n\tof each vowel are contained within\n\ta the following sentence.\n\n--------------------------------------------\n";
+   std::cout << "--------------------------------------------\n\n\tThis program will determine how many\n\tof each vowel are contained within\n\ta the following sentence.\n\n--------------------------------------------\n";
 do
 {
     
