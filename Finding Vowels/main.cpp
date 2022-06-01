@@ -1,181 +1,71 @@
 //This program will allow the user to find vowels within a sentence.
+
 #include<iostream>
 #include<string>
 #include<cstdlib>
 using namespace std;
 
-int FindA(char *, char);
-int FindE(char *, char);
-int FindI(char *, char);
-int FindO(char *, char);
-int FindU(char *, char);
-
+int Find(char *, char);
+//-----------------------------------------------------------------------------
 int main()
 {
     const int SIZE = 100;
-    char Sentence[SIZE];
-    char a = 'a';
-    char e = 'e';
-    char i = 'i';
-    char o = 'o';
-    char u = 'u';
-    char Option;
-   
-
+         char sentence[SIZE];
+         char a = 'a',
+              e = 'e',
+              i = 'i',
+              o = 'o',
+              u = 'u',
+              option;
+    
+    cout << "--------------------------------------------\n\n\tThis program will determine how many\n\tof each vowel are contained within\n\ta the following sentence.\n\n--------------------------------------------";
 do
 {
-    cout << "Enter a sentence and I will tell you how many of each vowel are contained in the sentence: \n";
+    
+    cout << "\n\nEnter sentence: ";
     cin.ignore();
-    cin.getline(Sentence,SIZE);
-    cout << endl;
+    cin.getline(sentence,SIZE);
    
-    while (atoi(Sentence) < 0 || atoi(Sentence) > 0 || atof(Sentence) < 0 || atof(Sentence) > 0 )
+    while (atoi(sentence) < 0 || atoi(sentence) > 0 || atof(sentence) < 0 || atof(sentence) > 0 )
     {
-        
-        cout << "I'm sorry you may not enter a number, please re-input a sentence.  Thank you \n";
-         cin.getline(Sentence,SIZE);
+        cout << "\nInvalid entry, please re-enter: ";
+        cin.getline(sentence,SIZE);
         
     }
-    
-    cout << "This sentence contains the letter 'a' " << FindA(Sentence, a) << " times \n";
-    cout << "This sentence contains the letter 'e' " << FindE(Sentence, e) << " times \n";
-    cout << "This sentence contains the letter 'i' " << FindI(Sentence, i) << " times \n";
-    cout << "This sentence contains the letter 'o' " << FindO(Sentence, o) << " times \n";
-    cout << "This sentence contains the letter 'u' " << FindU(Sentence, u) << " times \n";
+    cout << "\n--------------------------------------------";
+    cout << "\n\nThis sentence contains the letter 'a' " << Find(sentence, a) << " times \n";
+    cout << "This sentence contains the letter 'e' " << Find(sentence, e) << " times \n";
+    cout << "This sentence contains the letter 'i' " << Find(sentence, i) << " times \n";
+    cout << "This sentence contains the letter 'o' " << Find(sentence, o) << " times \n";
+    cout << "This sentence contains the letter 'u' " << Find(sentence, u) << " times \n";
     cout << endl;
-    cout << "Would you like to continue the program (Y/N) ? \n";
-    cin >> Option;
+    cout << "Would you like to continue the program (Y/N) ? ";
+    cin >> option;
+    option = toupper(option);
     
-while (Option != 'y' && Option != 'Y' && Option != 'N' && Option != 'n' )
-{
+    while (option != 'y' && option != 'Y' && option != 'N' && option != 'n' )
+    {
+    cout << "\nPlease input Y or N.  Thank you ";
+    cin >> option;
+    option = toupper(option);
+    }
     
-    cout << "Please input Y or N.  Thank you \n";
-    cin >> Option;
-    
+    cout << "\n--------------------------------------------";
     
 }
-    
-    
-}
-    while (Option == 'y' || Option == 'Y');
-
+while (option == 'y' || option == 'Y');
     
     return 0;
 }
-
-int FindA(char *Sentence, char a)
+//-----------------------------------------------------------------------------
+int Find(char *sentence, char letter)
 {
-    int NumberOfOccurences = 0;
-    int Counter = 0;
+    int occurrences = 0,
+        counter = 0;
     
-    while (Sentence[Counter] != '\0')
-    {
-        
-        if (Sentence[Counter] == a)
-        {
-            
-            NumberOfOccurences++;
-            
-        }
-        
-        Counter++;
-        
-    }
-    
-    
-    return NumberOfOccurences;
-    
+    while (sentence[counter] != '\0')
+        if (sentence[counter++] == letter)
+            occurrences++;
+        return occurrences;
 }
-
-int FindE(char *Sentence, char e)
-{
-    int NumberOfOccurences = 0;
-    int Counter = 0;
-    
-    while (Sentence[Counter] != '\0')
-    {
-        
-        if (Sentence[Counter] == e)
-        {
-            
-            NumberOfOccurences++;
-            
-        }
-        
-        Counter++;
-        
-    }
-    
-    
-    return NumberOfOccurences;
-    
-}
-
-int FindI(char *Sentence, char i)
-{
-    int NumberOfOccurences = 0;
-    int Counter = 0;
-    
-    while (Sentence[Counter] != '\0')
-    {
-        
-        if (Sentence[Counter] == i)
-        {
-            
-            NumberOfOccurences++;
-            
-        }
-        
-        Counter++;
-        
-    }
-    
-    
-    return NumberOfOccurences;
-    
-}
-
-int FindO(char *Sentence, char o)
-{
-    int NumberOfOccurences = 0;
-    int Counter = 0;
-    
-    while (Sentence[Counter] != '\0')
-    {
-        
-        if (Sentence[Counter] == o)
-        {
-            
-            NumberOfOccurences++;
-            
-        }
-        
-        Counter++;
-        
-    }
-     return NumberOfOccurences;
-}
-
-    int FindU(char *Sentence, char u)
-    {
-        int NumberOfOccurences = 0;
-        int Counter = 0;
-        
-        while (Sentence[Counter] != '\0')
-        {
-            
-            if (Sentence[Counter] == u)
-            {
-                
-                NumberOfOccurences++;
-                
-            }
-            
-            Counter++;
-            
-        }
-    
-    
-    return NumberOfOccurences;
-    
-}
+//-----------------------------------------------------------------------------
