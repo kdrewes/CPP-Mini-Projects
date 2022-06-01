@@ -1,5 +1,3 @@
-
-
 //This program will allow the user to find vowels within a sentence.
 
 #include<iostream>
