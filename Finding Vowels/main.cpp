@@ -1,60 +1,62 @@
+
+
 //This program will allow the user to find vowels within a sentence.
 
 #include<iostream>
 #include<string>
 #include<cstdlib>
-using namespace std;
+#define SIZE 100
+
+struct Structure
+{
+   
+    char sentence[SIZE];
+    char a = 'a',
+         e = 'e',
+         i = 'i',
+         o = 'o',
+         u = 'u',
+          option;
+    
+    friend std::istream & operator >> (std::istream &input, Structure &s)
+    {
+        std::cout << "\nEnter sentence: ";
+        input >> s.sentence;
+       
+        while (atoi(s.sentence) < 0 || atoi(s.sentence) > 0 || atof(s.sentence) < 0 || atof(s.sentence) > 0 )
+        {
+            std::cout << "\nInvalid entry, please re-enter: ";
+            input >> s.sentence;
+            
+        }
+        
+        return input;
+    }
+    
+    
+    
+}structure;
 
 int Find(char *, char);
+void Print(Structure&);
+
 //-----------------------------------------------------------------------------
 int main()
 {
-    const int SIZE = 100;
-         char sentence[SIZE];
-         char a = 'a',
-              e = 'e',
-              i = 'i',
-              o = 'o',
-              u = 'u',
-              option;
+   
     
-    cout << "--------------------------------------------\n\n\tThis program will determine how many\n\tof each vowel are contained within\n\ta the following sentence.\n\n--------------------------------------------";
+    std::cout << "--------------------------------------------\n\n\tThis program will determine how many\n\tof each vowel are contained within\n\ta the following sentence.\n\n--------------------------------------------\n";
 do
 {
     
-    cout << "\n\nEnter sentence: ";
-    cin.ignore();
-    cin.getline(sentence,SIZE);
-   
-    while (atoi(sentence) < 0 || atoi(sentence) > 0 || atof(sentence) < 0 || atof(sentence) > 0 )
-    {
-        cout << "\nInvalid entry, please re-enter: ";
-        cin.getline(sentence,SIZE);
-        
-    }
-    cout << "\n--------------------------------------------";
-    cout << "\n\nThis sentence contains the letter 'a' " << Find(sentence, a) << " times \n";
-    cout << "This sentence contains the letter 'e' " << Find(sentence, e) << " times \n";
-    cout << "This sentence contains the letter 'i' " << Find(sentence, i) << " times \n";
-    cout << "This sentence contains the letter 'o' " << Find(sentence, o) << " times \n";
-    cout << "This sentence contains the letter 'u' " << Find(sentence, u) << " times \n";
-    cout << endl;
-    cout << "Would you like to continue the program (Y/N) ? ";
-    cin >> option;
-    option = toupper(option);
-    
-    while (option != 'y' && option != 'Y' && option != 'N' && option != 'n' )
-    {
-    cout << "\nPlease input Y or N.  Thank you ";
-    cin >> option;
-    option = toupper(option);
-    }
-    
-    cout << "\n--------------------------------------------";
+    std::cin >> structure;
+    Print(structure);
+    std::cout << "\nWould you like to continue the program (Y/N) ? ";
     
 }
-while (option == 'y' || option == 'Y');
+while (std::cin >> structure.option && structure.option && (structure.option == 'Y' || structure.option == 'y'));
     
+    std::cout << std::endl;
     return 0;
 }
 //-----------------------------------------------------------------------------
@@ -67,5 +69,15 @@ int Find(char *sentence, char letter)
         if (sentence[counter++] == letter)
             occurrences++;
         return occurrences;
+}
+//-----------------------------------------------------------------------------
+void Print(Structure &structure)
+{
+    std::cout << "\n--------------------------------------------";
+    std:: cout << "\n\nThis sentence contains the letter 'a' " << Find(structure.sentence, structure.a) << " times \n";
+    std::cout << "This sentence contains the letter 'e' " << Find(structure.sentence, structure.e) << " times \n";
+    std::cout << "This sentence contains the letter 'i' " << Find(structure.sentence, structure.i) << " times \n";
+    std::cout << "This sentence contains the letter 'o' " << Find(structure.sentence, structure.o) << " times \n";
+    std::cout << "This sentence contains the letter 'u' " << Find(structure.sentence, structure.u) << " times \n";
 }
 //-----------------------------------------------------------------------------
