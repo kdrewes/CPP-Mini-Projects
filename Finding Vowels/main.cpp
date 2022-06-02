@@ -9,6 +9,7 @@ struct Structure
 {
    
     char sentence[SIZE];
+   
     char a = 'a',
          e = 'e',
          i = 'i',
