@@ -48,7 +48,6 @@ namespace command
 {
 
 void space(int size)
-
 {
     std::string temp;
     for(int i = 0; i < size; i++)
@@ -56,6 +55,7 @@ void space(int size)
    
     std::cout << temp;
 }
+ 
 }
 //--------------------------------------------------------------------------------------------------
 int main()
