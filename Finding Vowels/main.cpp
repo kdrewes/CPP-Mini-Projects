@@ -62,6 +62,7 @@ do
     
     std::cin >> structure;
     std::cout << structure;
+   
     std::cout << "\nWould you like to continue the program (Y/N) ? ";
     
 }
