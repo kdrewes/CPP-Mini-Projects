@@ -18,7 +18,7 @@ struct Structure
           option;
     
     friend std::istream & operator >> (std::istream &, Structure &);
-    friend std::ostream & operator >> (std::ostream &, Structure &);
+    friend std::ostream & operator << (std::ostream &, Structure &);
 
 }structure;
 //-----------------------------------------------------------------------------
