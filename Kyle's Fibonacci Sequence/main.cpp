@@ -48,7 +48,6 @@ public:
     int GetSum() const;
     
     size_t GetUpdater() const;
-    
 };
 //-----------------------------------------------
 Fibonacci :: Fibonacci()
