@@ -23,7 +23,6 @@ Seniors: 400, 500, 600, 600, 700, 200, 100
 
 #define DAYS 7
 #define CATEGORY 3
-
 //--------------------------------------------------------------------------------------------------
 void Input(long double [CATEGORY][DAYS], const std::string [], const std::string [], std::string []);
 
