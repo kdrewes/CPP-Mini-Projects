@@ -14,11 +14,6 @@
  3) Larger_Left_Right Algorithm
  4) Increasing Sequences
  
- Overall, I think I did quite well on this project.  My only challenge was
- setting up the test cases.  Please view my Files folder if you would
- like to look over the test cases.  I also will make sure to include the
- instructions for each of these algorithms in case anyone has any questions.
- 
  Thank you
  *********************************************************************
  */
