@@ -50,6 +50,8 @@
 #include <map>
 
 // -------------------------------------------------------------------
+// Customized library
+
 // Create library for my own customizable commands
 namespace command
 {
@@ -91,14 +93,14 @@ bool isIdentical(std::string x, std::string y, std::string z)
     typedef bool boolean;
     
     // Used to reference the indexes of string z
-    std::map<index,characters> Index_Reference_Of_Z;
+    std::map<index,characters> Indexed_Character;
     
     // Used to determine if there is a match between x/y and z
     boolean isMatch = true;
     
     // Initialize keys and values of Index_Reference_Of_Z
     for(int i = 0; i < z.size(); i++)
-        Index_Reference_Of_Z[i] = ' ';
+        Indexed_Character[i] = ' ';
     
     // Determine if characters of x match charaacters of z
     for(int i = 0; (i < x.size() && isMatch); i++)
@@ -109,9 +111,9 @@ bool isIdentical(std::string x, std::string y, std::string z)
         {
             if(x[i] == z[j])
             {
-                if(Index_Reference_Of_Z[j] != x[i])
+                if(Indexed_Character[j] != x[i])
                 {
-                    Index_Reference_Of_Z[j] = x[i];
+                    Indexed_Character[j] = x[i];
                     isMatch = true;
                     break;
                 }
@@ -131,9 +133,9 @@ bool isIdentical(std::string x, std::string y, std::string z)
         {
             if(y[i] == z[j])
             {
-                if(Index_Reference_Of_Z[j] != y[i])
+                if(Indexed_Character[j] != y[i])
                 {
-                    Index_Reference_Of_Z[j] = y[i];
+                    Indexed_Character[j] = y[i];
                     isMatch = true;
                     break;
                 }
