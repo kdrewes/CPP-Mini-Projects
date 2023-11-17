@@ -46,9 +46,6 @@
 #include <iostream>
 #include <map>
 
-// -------------------------------------------------------------------
-// Customized library
-
 // Create library for my own customizable commands
 namespace command
 {
