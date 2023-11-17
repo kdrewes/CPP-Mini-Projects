@@ -11,7 +11,6 @@
  Your objective is to determine if string x and y
  would equate to having the same exact characters as
  string z.
- 
  ------------------------------------------------------
  Example 1:
  
@@ -26,9 +25,7 @@
  2 b's and 2 c's.  In string z, it contains the
  same exact characters.  Therefore, the outcome is
  true.
- 
  ------------------------------------------------------
- 
  Example 2:
  
  Input:
