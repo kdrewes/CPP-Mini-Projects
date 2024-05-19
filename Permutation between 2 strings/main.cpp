@@ -26,13 +26,22 @@ public:
     // Methods
     void Method1(std::string, std::string);
     void Method2(std::string, std::string);
-    void Method3(std::string, std::string);
     
     // Return sums
     int ReturnSum();
     
 };
 
+// ------------------------------------------------------------------------------------------------
+// Constructor
+PermutationClass :: PermutationClass()
+{
+    
+    collectValues.clear();
+    permutation_map.clear();
+    this -> sum = 0;
+    
+}
 // ------------------------------------------------------------------------------------------------
 void PermutationClass :: Method1(std::string str, std::string str2)
 {
@@ -59,7 +68,6 @@ void PermutationClass :: Method1(std::string str, std::string str2)
     this -> collectValues.clear();
     
 }
-
 // ------------------------------------------------------------------------------------------------
 // Implement Method 2
 void PermutationClass :: Method2(std::string str, std::string str2)
@@ -84,7 +92,6 @@ void PermutationClass :: Method2(std::string str, std::string str2)
     // Reset values
     this -> collectValues.clear();
 }
-
 // ------------------------------------------------------------------------------------------------
 // Return Sum
 int PermutationClass :: ReturnSum()
@@ -94,15 +101,6 @@ int PermutationClass :: ReturnSum()
     return s;
 }
 // ------------------------------------------------------------------------------------------------
-// Constructor
-PermutationClass :: PermutationClass()
-{
-    
-    collectValues.clear();
-    permutation_map.clear();
-    this -> sum = 0;
-    
-}
 int main(int argc, const char * argv[]) {
     
     // Instantial object
