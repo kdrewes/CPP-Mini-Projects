@@ -381,10 +381,8 @@ void test4()
         write << "\nTest for " << FileNames[i] << " has successfully passed.\n\n\n";
 
     }
-    
+ 
     write.close();
-    
-    
 }
 //-------------------------------------------------------------------------------------------------
 void Print(std::vector<int>& Results, std::ofstream &write)
